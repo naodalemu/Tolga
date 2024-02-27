@@ -408,12 +408,15 @@ print(test_var)
                     </pre>
                 </div>
             </div>
-            
-            <p class="basic-text">The next code cell tells Python to increase the current value of <span class="inline-code">my_var</span> by 3.</p>
-            <p class="basic-text">To do this, we still need to use <span class="inline-code">my_var =</span> like before. And also just like before, the
-                new value we want to assign to the variable is to the right of the <span class="inline-code">=</span> sign.</p>
-                
-            <div class="code-snippet-container">
+
+            <p class="basic-text">The next code cell tells Python to increase the current value of <span
+                    class="inline-code">my_var</span> by 3.</p>
+            <p class="basic-text">To do this, we still need to use <span class="inline-code">my_var =</span> like
+                before. And also just like before, the
+                new value we want to assign to the variable is to the right of the <span class="inline-code">=</span>
+                sign.</p>
+
+            <div class="code-snippet-container adjust-stuff">
                 <div class="code-snippet">
                     <pre>
                         <code class="language-python">
@@ -437,8 +440,91 @@ print(my_var)
                     </pre>
                 </div>
             </div>
-                
-                
+
+            <h2 class="small-sub-header sub-header">Using multiple variables</h2>
+
+            <p class="basic-text">It's common for code to use multiple variables. This is especially useful when we have
+                to do a long calculation with multiple inputs.</p>
+
+            <p class="basic-text">In the next code cell, we calculate the number of seconds in four years. This
+                calculation uses five inputs.</p>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# Create variables
+num_years = 4
+days_per_year = 365 
+hours_per_day = 24
+mins_per_hour = 60
+secs_per_min = 60
+
+# Calculate number of seconds in four years
+total_secs = secs_per_min * mins_per_hour * hours_per_day * days_per_year * num_years
+print(total_secs)                     
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+126144000
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text">As calculated above, there are 126144000 seconds in four years.</p>
+            <p class="basic-text">Note it is possible to do this calculation without variables as just <span
+                    class="inline-code">60 * 60 * 24 * 365 * 4</span>, but it is much harder to check that the
+                calculation without variables does not have some error,
+                because it is not as readable. When we use variables (such as <span
+                    class="inline-code">num_years</span>, <span class="inline-code">days_per_year</span>, etc), we
+                canbetter keep track of each part of the calculation and more easily check for and correct any mistakes.
+            </p>
+
+            <p class="basic-text">Note that it is particularly useful to use variables when the values of the inputs can
+                change. For instance, say we want to slightly improve our estimate by updating the value of the number
+                of days in a year from 365 to 365.25, to account for leap years. Then we can change the value assigned
+                to <span class="inline-code">days_per_year</span> without changing any of the other variables and redo
+                the calculation.</p>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# Update to include leap years
+days_per_year = 365.25
+
+# Calculate number of seconds in four years
+total_secs = secs_per_min * mins_per_hour * hours_per_day * days_per_year * num_years
+print(total_secs)                  
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+126230400.0
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text"><b>Note</b>: You might have noticed the .0 added at the end of the number, which might look
+                unnecessary. This is caused by the fact that in the second calculation, we used a number with a
+                fractional part (365.25), whereas the first calculation multipled just numbers with no fractional part.
+                You'll learn more about this in Lesson 3, when we cover data types.</p>
+
         </div>
 
     </section>
