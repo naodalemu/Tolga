@@ -52,7 +52,7 @@
                 <div class="code-snippet">
                     <pre>
                         <code class="language-python">
-  print("Hello, world!")
+print("Hello, world!")
                         </code>
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
@@ -62,8 +62,8 @@
 
                 <div class="code-result">
                     <pre>
-                        <code class="language-python">
-  Hello, world!
+                        <code class="output language-python">
+Hello, world!
                         </code>
                     </pre>
                 </div>
@@ -87,7 +87,7 @@
                 <div class="code-snippet">
                     <pre>
                         <code class="language-python">
-  print(1 + 2)
+print(1 + 2)
                         </code>
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
@@ -97,8 +97,8 @@
 
                 <div class="code-result">
                     <pre>
-                        <code class="language-python">
-  3
+                        <code class="output language-python">
+3
                         </code>
                     </pre>
                 </div>
@@ -111,7 +111,7 @@
                 <div class="code-snippet">
                     <pre>
                         <code class="language-python">
-  print(9 - 5)
+print(9 - 5)
                         </code>
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
@@ -121,8 +121,8 @@
 
                 <div class="code-result">
                     <pre>
-                        <code class="language-python">
-  4
+                        <code class="output language-python">
+4
                         </code>
                     </pre>
                 </div>
@@ -132,7 +132,7 @@
                 <div class="code-snippet">
                     <pre>
                         <code class="language-python">
-  print(9 - 5)
+print(9 - 5)
                         </code>
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
@@ -142,8 +142,8 @@
 
                 <div class="code-result">
                     <pre>
-                        <code class="language-python">
-  4
+                        <code class="output language-python">
+4
                         </code>
                     </pre>
                 </div>
@@ -197,7 +197,7 @@
                 <div class="code-snippet">
                     <pre>
                         <code class="language-python">
-  print(((1 + 3) * (9 - 2) / 2) ** 2)
+print(((1 + 3) * (9 - 2) / 2) ** 2)
                         </code>
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
@@ -207,14 +207,238 @@
 
                 <div class="code-result">
                     <pre>
-                        <code class="language-python">
-  196.0
+                        <code class="output language-python">
+196.0
                         </code>
                     </pre>
                 </div>
             </div>
 
-            <p class="basic-text">In general, Python follows the <a href="https://www.mathsisfun.com/operation-order-pemdas.html">PEMDAS rule</a> when deciding the order of operations.</p>
+            <p class="basic-text">In general, Python follows the <a
+                    href="https://www.mathsisfun.com/operation-order-pemdas.html">PEMDAS rule</a> when deciding the
+                order of operations.</p>
+
+            <h2 class="sub-header">Comments</h2>
+            <p class="basic-text">We use <b>comments</b> to annotate what code is doing. They help other people to
+                understand
+                your code, and they can also be helpful if you haven't looked at your own code in a while. So far, the
+                code that we have written is very short, but annotations become more important when you have written a
+                lot of code.</p>
+
+            <p class="basic-text">For instance, in the next code cell, we multiply 3 by 2. We also add a comment (<span
+                    class="inline-code">#Multiply 3 by 2</span>) above the code to describe what the code is doing.</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# Multiply 3 by 2
+print(3 * 2)
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+6
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text">To indicate to Python that a line is comment (and not Python code), you need to write
+                a pound sign (<span class="inline-code">#</span>) as the very first character.</p>
+            <p class="basic-text">Once Python sees the pound sign and recognizes that the line is a comment, it is
+                completely ignored by the computer. This is important, because just like English or Hindi (or any other
+                language!), Python is a language with very strict rules that need to be followed. Python is stricter
+                than a human listener, though, and will just error if it can't understand the code.</p>
+            <p class="basic-text">We can see an example of this, in the code cell below. Python errors if we remove the
+                pound sign, because the text in the comment is not valid Python code, so it can't be interpreted
+                properly.</p>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+Multiply 3 by 2
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output error-result language-python">
+File "/tmp/ipykernel_18/3750420471.py", line 1
+Multiply 3 by 2
+            ^
+SyntaxError: invali
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <h2 class="sub-header">Variables</h2>
+            <p class="basic-text">So far, you have used code to make a calculation and print the result, and the result
+                isn't saved anywhere. However, you can imagine that you might want to save the result to work with it
+                later. For this, you'll need to use <b>variables</b>.</p>
+
+            <h3 class="small-sub-header sub-header">Creating variables</h3>
+            <p class="basic-text">The next code cell creates a variable named <span class="inline-code">test_var</span>
+                and assigns it the value that we get when we add 5 to 4.</p>
+
+            <p class="basic-text">We then print the value that is assigned to the variable, which is 9.</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# Create a variable called test_var and give it a value of 4+5
+test_var = 4 + 5
+
+# Print the value of test_var
+print(test_var)
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+9
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text">In general, to work with a variable, you need to begin by selecting the name you want
+                to use. Variable names are ideally short and descriptive. They also need to satisfy several
+                requirements:</p>
+
+            <ul class="lists">
+                <li class="list-content basic-text">They can't have spaces (e.g., test var is not allowed)</li>
+                <li class="list-content basic-text">They can only include letters, numbers, and underscores (e.g.,
+                    <span class="inline-code">test_var!</span> is not allowed)
+                </li>
+                <li class="list-content basic-text">They have to start with a letter or underscore (e.g., <span
+                        class="inline-code">1_var</span> is not allowed)</li>
+            </ul>
+
+            <p class="basic-text">Then, to create the variable, you need to use <span class="inline-code">=</span> to
+                assign the value that you want it
+                to have.</p>
+            <p class="basic-text">You can always take a look at the value assigned to the variable by using <span
+                    class="inline-code">print()</span> and
+                putting the name of the variable in parentheses.</p>
+            <p class="basic-text">Over time, you'll learn how to select good names for Python variables. It's completely
+                fine for it to feel uncomfortable now, and the best way to learn is just by viewing a lot of Python
+                code!</p>
+
+            <h2 class="small-sub-header sub-header">Manipulating variables</h2>
+            <p class="basic-text">You can always change the value assigned to a variable by overriding the previous
+                value.</p>
+            <p class="basic-text">In the code cell below, we change the value of <span class="inline-code">my_var</span>
+                from 3 to 100.</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# Set the value of a new variable to 3
+my_var = 3
+
+# Print the value assigned to my_var
+print(my_var)
+
+# Change the value of the variable to 100
+my_var = 100
+
+# Print the new value assigned to my_var
+print(my_var)                            
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+3
+100
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text">Note that in general, whenever you define a variable in a code cell, all of the code
+                cells that follow also have access to the variable. For instance, we use the next code cell to access
+                the values of <span class="inline-code">my_var</span> (from the code cell above) and <span
+                    class="inline-code">test_var</span> (from earlier in this tutorial).</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+print(my_var)
+print(test_var)                        
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+100
+9
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text">The next code cell tells Python to increase the current value of <span class="inline-code">my_var</span> by 3.</p>
+            <p class="basic-text">To do this, we still need to use <span class="inline-code">my_var =</span> like before. And also just like before, the
+                new value we want to assign to the variable is to the right of the <span class="inline-code">=</span> sign.</p>
+                
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# Increase the value by 3
+my_var = my_var + 3
+
+# Print the value assigned to my_var
+print(my_var)                      
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+103
+                        </code>
+                    </pre>
+                </div>
+            </div>
+                
+                
         </div>
 
     </section>

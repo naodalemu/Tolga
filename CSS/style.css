@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     font-family: "Inter", sans-serif;
+    color: #3c4043;
 }
 
 @font-face {
@@ -66,8 +67,8 @@
 
 .try-it {
     position: absolute;
-    top: 30px;
-    right: 15px;
+    bottom: 50px;
+    right: 10px;
     cursor: pointer;
     border: 1px solid #808080;
     padding: 3px 7px;
@@ -83,7 +84,22 @@
 .language-python {
     border-radius: 5px;
     font-family: "Roboto Mono", monospace;
+    font-size: 14px;
 }
+
+pre code.hljs {
+    padding: 0 30px 40px 30px;
+}
+
+.error-result {
+    background: #ffdedb;
+}
+
+.output {
+    padding-bottom: 0px !important;
+}
+
+/* Table */
 
 .table_component {
     overflow: auto;
@@ -126,4 +142,21 @@
 .table_component tr:nth-child(odd) td {
     background-color: #ffffff;
     color: #000000;
+}
+
+.small-sub-header {
+    font-size: 20px;
+}
+
+.adjust-stuff {
+    margin-bottom: -10px;
+}
+
+.lists {
+    padding-left: 20px;
+    margin-bottom: 8px;
+}
+
+.list-content {
+    margin-bottom: 4px;
 }
