@@ -4,6 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
     <link rel="stylesheet" href="CSS/style.css">
     <title>Document</title>
 </head>
@@ -13,17 +21,74 @@
     <section class="main-container">
 
         <div class="aligner">
-            
+
             <h1 class="chapter-title">Arthimetic and Variable</h1>
             <p class="title-description">Make calculations, and define and modify variables.</p>
-    
-            <p class="basic-text">Welcome to the Intro to Programming course! This course is for you if you have never
-                written a single line of code, and you are interested in learning data science and machine learning.</p>
 
+            <p class="basic-text">Welcome to the Intro to Programming course! This course is for you if you have never
+                written a single line of code, and you are interested in learning data science and machine learning. (If
+                you do have programming experience and are just new to the Python language, the Python course is a
+                better fit to get started.)</p>
+
+            <p class="basic-text">In this course, you will learn how to use code to get a computer to perform certain
+                tasks for you. Python is one of the most popular programming languages for data science, and it's the
+                language you'll learn in this course. Once you complete this course, you'll be fully prepared to
+                progress to the Python course, followed by the Intro to Machine Learning course.</p>
+
+            <p class="basic-text">In this tutorial, you'll see several examples of Python code. You'll get a chance to
+                write your own code in the exercise. (If you'd like to preview the exercise, feel free to take a look
+                now. We also provide a link to the exercise at the end of this tutorial.)</p>
+
+            <h2 class="sub-header">Printing</h2>
+            <p class="basic-text">One of the simplest (and most important!) tasks you can ask a computer to do is to
+                print a message.</p>
+
+            <p class="basic-text">In Python, we ask a computer to print a message for us by writing <span
+                    class="inline-code">print()</span> and putting
+                the message inside the parentheses and enclosed in quotation marks. Below, we ask the computer to print
+                the message <span class="inline-code">Hello, world!</span>.</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+  print("Hello, world!")
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="language-python">
+  Hello, world!
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text">The code is inside the box (known as a <b>code cell</b>), and the computer's response
+                (called
+                the <b>output</b> of the code) is shown below the text Output. As you can see, the computer printed the
+                message that we
+                wanted.</p>
+
+            <h2 class="sub-header">Arithmetic</h2>
+            <p class="basic-text">We can also print the value of some arithmetic operation (such as addition,
+                subtraction, multiplication, or division).</p>
+
+            <p class="basic-text">For instance, in the next code cell, the computer adds 2 to 1 and then prints the
+                result, which is 3. Note that unlike when we were simply printing text, we don't use any quotation
+                marks.</p>
         </div>
 
     </section>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script>hljs.highlightAll();</script>
 </body>
 
 </html>
