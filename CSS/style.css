@@ -93,7 +93,7 @@
 
 .table_component table {
     border: 1px solid #dededf;
-    height: %;
+    height: auto;
     width: 400px;
     table-layout: fixed;
     border-collapse: collapse;
