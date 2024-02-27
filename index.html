@@ -343,7 +343,7 @@ print(test_var)
                 fine for it to feel uncomfortable now, and the best way to learn is just by viewing a lot of Python
                 code!</p>
 
-            <h2 class="small-sub-header sub-header">Manipulating variables</h2>
+            <h3 class="small-sub-header sub-header">Manipulating variables</h3>
             <p class="basic-text">You can always change the value assigned to a variable by overriding the previous
                 value.</p>
             <p class="basic-text">In the code cell below, we change the value of <span class="inline-code">my_var</span>
@@ -441,7 +441,7 @@ print(my_var)
                 </div>
             </div>
 
-            <h2 class="small-sub-header sub-header">Using multiple variables</h2>
+            <h3 class="small-sub-header sub-header">Using multiple variables</h3>
 
             <p class="basic-text">It's common for code to use multiple variables. This is especially useful when we have
                 to do a long calculation with multiple inputs.</p>
@@ -520,10 +520,68 @@ print(total_secs)
                 </div>
             </div>
 
-            <p class="basic-text"><b>Note</b>: You might have noticed the .0 added at the end of the number, which might look
+            <p class="basic-text"><b>Note</b>: You might have noticed the .0 added at the end of the number, which might
+                look
                 unnecessary. This is caused by the fact that in the second calculation, we used a number with a
                 fractional part (365.25), whereas the first calculation multipled just numbers with no fractional part.
                 You'll learn more about this in Lesson 3, when we cover data types.</p>
+
+            <h2 class="sub-header">Debugging</h2>
+            <p class="basic-text">One common error when working with variables is to accidentally introduce typos. For
+                instance, if we spell <span class="inline-code">days_per_year</span> as <span
+                    class="inline-code">days_per_dy</span>, Python will error with message <span
+                    class="inline-code">NameError: name'hours_per_dy' is not defined</span>.</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+print(hours_per_dy)             
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output error-result language-python">
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+/tmp/ipykernel_18/142450907.py in <module>
+----> 1 print(hours_per_dy)
+
+NameError: name 'hours_per_dy' is not defined
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text">When you see <span class="inline-code">NameError</span> like this, it's an indication
+                that you should check how you have spelled the variable that it references as "not defined". Then, to
+                fix the error, you need only correct the spelling.</p>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+print(hours_per_day)                 
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+24
+                        </code>
+                    </pre>
+                </div>
+            </div>
 
         </div>
 
