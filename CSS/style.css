@@ -60,7 +60,7 @@
 
 .try-it {
     position: absolute;
-    bottom: 50px;
+    bottom: 47px;
     right: 10px;
     cursor: pointer;
     border: 1px solid #808080;
@@ -156,7 +156,7 @@ pre code.hljs {
     margin-bottom: 4px;
 }
 
-@media screen and (max-width: 1200px) {
+/* @media screen and (max-width: 1200px) {
     .aligner {
         width: 50%;
     }
@@ -179,4 +179,4 @@ pre code.hljs {
         width: 90%;
         padding: 50px 0px;
     }
-}
+} */
