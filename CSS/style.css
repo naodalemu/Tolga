@@ -11,7 +11,7 @@
 }
 
 .aligner {
-    width: 90%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -208,6 +208,10 @@ pre code.hljs {
 
 .list-content {
     margin-bottom: 4px;
+}
+
+.indented-list {
+    list-style-type: square;
 }
 
 @media screen and (max-width: 1110px) {
