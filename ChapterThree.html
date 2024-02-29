@@ -27,13 +27,26 @@
             <p class="title-description">Explore integers, floats, booleans, and strings.</p>
 
             <h2 class="sub-header">Introduction</h2>
-            <p class="basic-text">Whenever you create a variable in Python, it has a value with a corresponding data type. There are many different data types, such as integers, floats, booleans, and strings, all of which we'll cover in this lesson. (<i>This is just a small subset of the available data types -- there are also dictionaries, sets, lists, tuples, and much more</i>.)</p>
-            <p class="basic-text">Data types are important, because they determine what kinds of actions you can do with them. For instance, you can divide two floats, but you cannot divide two strings. For instance, <span class="inline-code">12.0/2.0</span> makes sense, but <span class="inline-code">"cat"/"dog"</span> does not.</p>
-            <p class="basic-text">To avoid errors, we need to make sure that the actions match the data types that we have.</p>
+            <p class="basic-text">Whenever you create a variable in Python, it has a value with a corresponding data
+                type. There are many different data types, such as integers, floats, booleans, and strings, all of which
+                we'll cover in this lesson. (<i>This is just a small subset of the available data types -- there are
+                    also dictionaries, sets, lists, tuples, and much more</i>.)</p>
+            <p class="basic-text">Data types are important, because they determine what kinds of actions you can do with
+                them. For instance, you can divide two floats, but you cannot divide two strings. For instance, <span
+                    class="inline-code">12.0/2.0</span> makes sense, but <span class="inline-code">"cat"/"dog"</span>
+                does not.</p>
+            <p class="basic-text">To avoid errors, we need to make sure that the actions match the data types that we
+                have.</p>
 
             <h2 class="sub-header">Integers</h2>
-            <p class="basic-text">Integers are numbers without any fractional part and can be positive (<span class="inline-code">1</span>, <span class="inline-code">2</span>, <span class="inline-code">3</span>3, ...), negative (<span class="inline-code">-1</span>, <span class="inline-code">-2</span>, <span class="inline-code">-3</span>, ...), or zero (<span class="inline-code">0</span>).</p>
-            <p class="basic-text">In the code cell below, we set a variable <span class="inline-code">x</span> to an integer. We then verify the data type with <span class="inline-code">type()</span>, and need only pass the variable name into the parentheses.</p>
+            <p class="basic-text">Integers are numbers without any fractional part and can be positive (<span
+                    class="inline-code">1</span>, <span class="inline-code">2</span>, <span
+                    class="inline-code">3</span>3, ...), negative (<span class="inline-code">-1</span>, <span
+                    class="inline-code">-2</span>, <span class="inline-code">-3</span>, ...), or zero (<span
+                    class="inline-code">0</span>).</p>
+            <p class="basic-text">In the code cell below, we set a variable <span class="inline-code">x</span> to an
+                integer. We then verify the data type with <span class="inline-code">type()</span>, and need only pass
+                the variable name into the parentheses.</p>
 
             <div class="code-snippet-container">
                 <div class="code-snippet">
@@ -58,11 +71,13 @@ print(type(x))
                     </pre>
                 </div>
             </div>
-            
-            <p class="basic-text">In the output above, <span class="inline-code">&lt;class 'int'&gt;</span> refers to the <b>int</b>eger data type.</p>
+
+            <p class="basic-text">In the output above, <span class="inline-code">&lt;class 'int'&gt;</span> refers to
+                the <b>int</b>eger data type.</p>
             <h2 class="sub-header">Floats</h2>
-            <p class="basic-text">Floats are numbers with fractional parts. They can have many numbers after decimal.</p>
-            
+            <p class="basic-text">Floats are numbers with fractional parts. They can have many numbers after decimal.
+            </p>
+
             <div class="code-snippet-container">
                 <div class="code-snippet">
                     <pre>
@@ -76,7 +91,7 @@ print(type(nearly_pi))
                 </div>
 
                 <p class="output-indicator">Output:</p>
-                
+
                 <div class="code-result">
                     <pre>
                         <code class="output language-python">
@@ -86,9 +101,9 @@ print(type(nearly_pi))
                     </pre>
                 </div>
             </div>
-            
+
             <p class="basic-text">We can also specify a float with a fraction.</p>
-            
+
             <div class="code-snippet-container">
                 <div class="code-snippet">
                     <pre>
@@ -100,9 +115,9 @@ print(type(almost_pi))
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
-    
+
                 <p class="output-indicator">Output:</p>
-                
+
                 <div class="code-result">
                     <pre>
                         <code class="output language-python">
@@ -112,9 +127,11 @@ print(type(almost_pi))
                     </pre>
                 </div>
             </div>
-            
-            <p class="basic-text">One function that is particularly useful for fractions is the <span class="inline-code">round()</span> function. It lets you round a number to a specified number of decimal places.</p>
-            
+
+            <p class="basic-text">One function that is particularly useful for fractions is the <span
+                    class="inline-code">round()</span> function. It lets you round a number to a specified number of
+                decimal places.</p>
+
             <div class="code-snippet-container">
                 <div class="code-snippet">
                     <pre>
@@ -127,9 +144,9 @@ print(type(rounded_pi))
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
-    
+
                 <p class="output-indicator">Output:</p>
-                
+
                 <div class="code-result">
                     <pre>
                         <code class="output language-python">
@@ -139,10 +156,13 @@ print(type(rounded_pi))
                     </pre>
                 </div>
             </div>
-            
-            <p class="basic-text">Whenever you write an number with a decimal point, Python recognizes it as a float data type.</p>
-            <p class="basic-text">For instance, <span class="inline-code">1.</span> (or <span class="inline-code">1.0</span>, <span class="inline-code">1.00</span>, etc) will be recognized as a float. This is the case, even though these numbers technically have no fractional part!</p>
-            
+
+            <p class="basic-text">Whenever you write an number with a decimal point, Python recognizes it as a float
+                data type.</p>
+            <p class="basic-text">For instance, <span class="inline-code">1.</span> (or <span
+                    class="inline-code">1.0</span>, <span class="inline-code">1.00</span>, etc) will be recognized as a
+                float. This is the case, even though these numbers technically have no fractional part!</p>
+
             <div class="code-snippet-container">
                 <div class="code-snippet">
                     <pre>
@@ -154,9 +174,9 @@ print(type(y_float))
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
-    
+
                 <p class="output-indicator">Output:</p>
-                
+
                 <div class="code-result">
                     <pre>
                         <code class="output language-python">
@@ -166,10 +186,12 @@ print(type(y_float))
                     </pre>
                 </div>
             </div>
-            
+
             <h2 class="sub-header">Booleans</h2>
-            <p class="basic-text">Booleans represent one of two values: <span class="inline-code">True</span> or <span class="inline-code">False</span>. In the code cell below, <span class="inline-code">z_one</span> is set to a boolean with value <span class="inline-code">True</span>.</p>
-            
+            <p class="basic-text">Booleans represent one of two values: <span class="inline-code">True</span> or <span
+                    class="inline-code">False</span>. In the code cell below, <span class="inline-code">z_one</span> is
+                set to a boolean with value <span class="inline-code">True</span>.</p>
+
             <div class="code-snippet-container">
                 <div class="code-snippet">
                     <pre>
@@ -181,9 +203,9 @@ print(type(z_one))
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
-    
+
                 <p class="output-indicator">Output:</p>
-                
+
                 <div class="code-result">
                     <pre>
                         <code class="output language-python">
@@ -193,9 +215,10 @@ True
                     </pre>
                 </div>
             </div>
-            
-            <p class="basic-text">Next, <span class="inline-code">z_two</span> is set to a boolean with value <span class="inline-code">False</span>.</p>
-            
+
+            <p class="basic-text">Next, <span class="inline-code">z_two</span> is set to a boolean with value <span
+                    class="inline-code">False</span>.</p>
+
             <div class="code-snippet-container">
                 <div class="code-snippet">
                     <pre>
@@ -207,9 +230,9 @@ print(type(z_two))
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
-    
+
                 <p class="output-indicator">Output:</p>
-                
+
                 <div class="code-result">
                     <pre>
                         <code class="output language-python">
@@ -219,9 +242,11 @@ False
                     </pre>
                 </div>
             </div>
-            
-            <p class="basic-text">Booleans are used to represent the truth value of an expression. Since <span class="inline-code">1 < 2</span> is a true statement, <span class="inline-code">z_three</span> takes on a value of <span class="inline-code">True</span>.</p>
-            
+
+            <p class="basic-text">Booleans are used to represent the truth value of an expression. Since <span
+                    class="inline-code">1 < 2</span> is a true statement, <span class="inline-code">z_three</span> takes
+                        on a value of <span class="inline-code">True</span>.</p>
+
             <div class="code-snippet-container">
                 <div class="code-snippet">
                     <pre>
@@ -233,9 +258,9 @@ print(type(z_three))
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
-    
+
                 <p class="output-indicator">Output:</p>
-                
+
                 <div class="code-result">
                     <pre>
                         <code class="output language-python">
@@ -245,9 +270,11 @@ True
                     </pre>
                 </div>
             </div>
-            
-            <p class="basic-text">Similarly, since <span class="inline-code">5 < 3</span> is a false statement, <span class="inline-code">z_four</span> takes on a value of <span class="inline-code">False</span>.</p>
-            
+
+            <p class="basic-text">Similarly, since <span class="inline-code">5 < 3</span> is a false statement, <span
+                            class="inline-code">z_four</span> takes on a value of <span
+                            class="inline-code">False</span>.</p>
+
             <div class="code-snippet-container">
                 <div class="code-snippet">
                     <pre>
@@ -259,9 +286,9 @@ print(type(z_four))
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
-    
+
                 <p class="output-indicator">Output:</p>
-                
+
                 <div class="code-result">
                     <pre>
                         <code class="output language-python">
@@ -271,9 +298,11 @@ False
                     </pre>
                 </div>
             </div>
-            
-            <p class="basic-text">We can switch the value of a boolean by using <span class="inline-code">not</span>. So, <span class="inline-code">not True</span> is equivalent to <span class="inline-code">False</span>, and <span class="inline-code">not False</span> becomes <span class="inline-code">True</span>.</p>
-            
+
+            <p class="basic-text">We can switch the value of a boolean by using <span class="inline-code">not</span>.
+                So, <span class="inline-code">not True</span> is equivalent to <span class="inline-code">False</span>,
+                and <span class="inline-code">not False</span> becomes <span class="inline-code">True</span>.</p>
+
             <div class="code-snippet-container">
                 <div class="code-snippet">
                     <pre>
@@ -285,9 +314,9 @@ print(type(z_five))
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
-    
+
                 <p class="output-indicator">Output:</p>
-                
+
                 <div class="code-result">
                     <pre>
                         <code class="output language-python">
@@ -297,13 +326,16 @@ True
                     </pre>
                 </div>
             </div>
-            
-            <p class="basic-text">Booleans will be important in the next lesson, when you learn about conditions and conditional statements.</p>
+
+            <p class="basic-text">Booleans will be important in the next lesson, when you learn about conditions and
+                conditional statements.</p>
 
             <h2 class="sub-header">Strings</h2>
-            
-            <p class="basic-text">The string data type is a collection of characters (like alphabet letters, punctuation, numerical digits, or symbols) contained in quotation marks. Strings are commonly used to represent text.</p>
-            
+
+            <p class="basic-text">The string data type is a collection of characters (like alphabet letters,
+                punctuation, numerical digits, or symbols) contained in quotation marks. Strings are commonly used to
+                represent text.</p>
+
             <div class="code-snippet-container">
                 <div class="code-snippet">
                     <pre>
@@ -315,9 +347,9 @@ print(type(w))
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
-    
+
                 <p class="output-indicator">Output:</p>
-                
+
                 <div class="code-result">
                     <pre>
                         <code class="output language-python">
@@ -327,9 +359,12 @@ Hello, Python!
                     </pre>
                 </div>
             </div>
-            
-            <p class="basic-text">You can get the length of a string with <span class="inline-code">len()</span>. <span class="inline-code">"Hello, Python!"</span> has length 14, because it has 14 characters, including the space, comma, and exclamation mark. Note that the quotation marks are not included when calculating the length.</p>
-            
+
+            <p class="basic-text">You can get the length of a string with <span class="inline-code">len()</span>. <span
+                    class="inline-code">"Hello, Python!"</span> has length 14, because it has 14 characters, including
+                the space, comma, and exclamation mark. Note that the quotation marks are not included when calculating
+                the length.</p>
+
             <div class="code-snippet-container">
                 <div class="code-snippet">
                     <pre>
@@ -339,9 +374,9 @@ print(len(w))
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
-    
+
                 <p class="output-indicator">Output:</p>
-                
+
                 <div class="code-result">
                     <pre>
                         <code class="output language-python">
@@ -350,9 +385,9 @@ print(len(w))
                     </pre>
                 </div>
             </div>
-            
+
             <p class="basic-text">One special type of string is the empty string, which has length zero.</p>
-            
+
             <div class="code-snippet-container">
                 <div class="code-snippet">
                     <pre>
@@ -364,9 +399,9 @@ print(len(shortest_string))
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
-    
+
                 <p class="output-indicator">Output:</p>
-                
+
                 <div class="code-result">
                     <pre>
                         <code class="output language-python">
@@ -376,9 +411,9 @@ print(len(shortest_string))
                     </pre>
                 </div>
             </div>
-            
+
             <p class="basic-text">If you put a number in quotation marks, it has a string data type.</p>
-            
+
             <div class="code-snippet-container">
                 <div class="code-snippet">
                     <pre>
@@ -390,9 +425,9 @@ print(type(my_number))
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
-    
+
                 <p class="output-indicator">Output:</p>
-                
+
                 <div class="code-result">
                     <pre>
                         <code class="output language-python">
@@ -402,10 +437,13 @@ print(type(my_number))
                     </pre>
                 </div>
             </div>
-            
-            <p class="basic-text">If we have a string that is convertible to a float, we can use <span class="inline-code">float()</span>.</p>
-            <p class="basic-text">This won't always work! For instance, we can convert <span class="inline-code">"10.43430"</span> and <span class="inline-code">"3"</span> to floats, but we cannot convert <span class="inline-code">"Hello, Python!"</span> to a float.</p>
-            
+
+            <p class="basic-text">If we have a string that is convertible to a float, we can use <span
+                    class="inline-code">float()</span>.</p>
+            <p class="basic-text">This won't always work! For instance, we can convert <span
+                    class="inline-code">"10.43430"</span> and <span class="inline-code">"3"</span> to floats, but we
+                cannot convert <span class="inline-code">"Hello, Python!"</span> to a float.</p>
+
             <div class="code-snippet-container">
                 <div class="code-snippet">
                     <pre>
@@ -417,9 +455,9 @@ print(type(also_my_number))
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
-    
+
                 <p class="output-indicator">Output:</p>
-                
+
                 <div class="code-result">
                     <pre>
                         <code class="output language-python">
@@ -429,9 +467,10 @@ print(type(also_my_number))
                     </pre>
                 </div>
             </div>
-            
-            <p class="basic-text">Just like you can add two numbers (floats or integers), you can also add two strings. It results in a longer string that combines the two original strings by concatenating them.</p>
-            
+
+            <p class="basic-text">Just like you can add two numbers (floats or integers), you can also add two strings.
+                It results in a longer string that combines the two original strings by concatenating them.</p>
+
             <div class="code-snippet-container">
                 <div class="code-snippet">
                     <pre>
@@ -443,9 +482,9 @@ print(type(new_string))
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
-    
+
                 <p class="output-indicator">Output:</p>
-                
+
                 <div class="code-result">
                     <pre>
                         <code class="output language-python">
@@ -455,9 +494,11 @@ abcdef
                     </pre>
                 </div>
             </div>
-            
-            <p class="basic-text">Note that it's not possible to do subtraction or division with two strings. You also can't multiply two strings, but you can multiply a string by an integer. This again results in a string that's just the original string concatenated with itself a specified number of times.</p>
-            
+
+            <p class="basic-text">Note that it's not possible to do subtraction or division with two strings. You also
+                can't multiply two strings, but you can multiply a string by an integer. This again results in a string
+                that's just the original string concatenated with itself a specified number of times.</p>
+
             <div class="code-snippet-container">
                 <div class="code-snippet">
                     <pre>
@@ -469,9 +510,9 @@ print(type(newest_string))
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
-    
+
                 <p class="output-indicator">Output:</p>
-                
+
                 <div class="code-result">
                     <pre>
                         <code class="output language-python">
@@ -481,9 +522,10 @@ abcabcabc
                     </pre>
                 </div>
             </div>
-            
-            <p class="basic-text">Note that you cannot multiply a string by a float! Trying to do so will return an error.</p>
-            
+
+            <p class="basic-text">Note that you cannot multiply a string by a float! Trying to do so will return an
+                error.</p>
+
             <div class="code-snippet-container">
                 <div class="code-snippet">
                     <pre>
@@ -493,9 +535,9 @@ will_not_work = "abc" * 3.
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
-    
+
                 <p class="output-indicator">Output:</p>
-                
+
                 <div class="code-result">
                     <pre>
                         <code class="output error-result language-python">
@@ -509,19 +551,23 @@ TypeError: can't multiply sequence by non-int of type 'float'
                     </pre>
                 </div>
             </div>
-            
-            <p class="basic-text">In the error, the "sequence" is the string <span class="inline-code">"abc"</span>, and the "non-int of type 'float'" is the float (<span class="inline-code">3.</span>). So, the error message can be reworded to say "can't multiply string by float".</p>
+
+            <p class="basic-text">In the error, the "sequence" is the string <span class="inline-code">"abc"</span>, and
+                the "non-int of type 'float'" is the float (<span class="inline-code">3.</span>). So, the error message
+                can be reworded to say "can't multiply string by float".</p>
 
             <div class="navigation" style="display: flex; justify-content: space-between; font-size: 100px;">
-                <div class="previous" style="cursor: pointer;"><a href="ChapterTwo.html" style="text-decoration: none;">&leftarrow;</a></div>
-                <div class="next" style="cursor: pointer;"><a href="" style="text-decoration: none;">&rightarrow;</a></div>
-            </div> 
-            
+                <div class="previous" style="cursor: pointer;"><a href="ChapterTwo.html"
+                        style="text-decoration: none;">&leftarrow;</a></div>
+                <div class="next" style="cursor: pointer;"><a href="" style="text-decoration: none;">&rightarrow;</a>
+                </div>
+            </div>
+
         </div>
-        
+
     </section>
-    
-    
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
     <script>hljs.highlightAll();</script>

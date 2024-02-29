@@ -22,7 +22,7 @@
 
 .line {
     width: 3px;
-    height: 700px;
+    height: 850px;
     background: rgb(117, 152, 223);
     background: linear-gradient(90deg, rgba(117, 152, 223, 1) 0%, rgba(81, 125, 215, 1) 100%);
     position: absolute;
