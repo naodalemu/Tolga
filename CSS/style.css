@@ -254,11 +254,13 @@ pre code.hljs {
     .line {
         height: 1400px;
     }
+}
 
 @media screen and (max-width: 350px) {
     .line {
         height: 1500px;
     }
+}
 
 @media screen and (max-width: 325px) {
     .line {
