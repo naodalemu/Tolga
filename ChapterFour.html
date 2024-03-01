@@ -313,18 +313,275 @@ Normal temperature.
                 statements.</p>
 
             <h3 class="small-sub-header sub-header">"if ... elif ... else" statements</h3>
-            <p class="basic-text">We can use "elif" (which is short for "else if") to check if multiple conditions might be true. The function below:</p>
+            <p class="basic-text">We can use "elif" (which is short for "else if") to check if multiple conditions might
+                be true. The function below:</p>
 
             <ul class="lists">
-                <li class="list-content basic-text">First checks if <span class="inline-code">temp > 38</span>. If this is true, then the message is set to <span class="inline-code">"Fever!"</span>.</li>
-                <li class="list-content basic-text">As long as the message has not already been set, the function then checks if <span class="inline-code">temp > 38</span>. If this is true, then the message is set to <span class="inline-code">"Normal temperature."</span>.</li>
-                <li class="list-content basic-text">Then, if still no message has been set, the "else" statement ensures that the message is set to <span class="inline-code">"Low temperature."</span> message is printed.</li>
+                <li class="list-content basic-text">First checks if <span class="inline-code">temp > 38</span>. If this
+                    is true, then the message is set to <span class="inline-code">"Fever!"</span>.</li>
+                <li class="list-content basic-text">As long as the message has not already been set, the function then
+                    checks if <span class="inline-code">temp > 38</span>. If this is true, then the message is set to
+                    <span class="inline-code">"Normal temperature."</span>.
+                </li>
+                <li class="list-content basic-text">Then, if still no message has been set, the "else" statement ensures
+                    that the message is set to <span class="inline-code">"Low temperature."</span> message is printed.
+                </li>
             </ul>
+
+            <p class="basic-text">You can think of "elif" as saying ... "okay, that previous condition (e.g., <span
+                    class="inline-code">temp > 38</span>) was false, so let's check if this new condition (e.g., <span
+                    class="inline-code">temp > 35</span>) might be true!"</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+def evaluate_temp_with_elif(temp):
+    if temp > 38:
+        message = "Fever!"
+    elif temp > 35:
+        message = "Normal temperature."
+    else:
+        message = "Low temperature."
+    return message
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+            </div>
+
+            <p class="basic-text">In the code cell below, we run the code under the "elif" statement, because <span
+                    class="inline-code">temp > 38</span> is <span class="inline-code">False</span>, and <span
+                    class="inline-code">temp > 35</span> is <span class="inline-code">True</span>. Once this code is
+                run, the function skips over the "else" statement and returns the message.</p>
+
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+evaluate_temp_with_elif(36)
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+'Normal temperature.'
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text">Finally, we try out a case where the temperature is less than 35°C. Since the
+                conditionals in the "if" and "elif" statements both evaluate to <span class="inline-code">False</span>,
+                the code block inside the "else" statement is executed.</p>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+evaluate_temp_with_elif(34)
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+'Low temperature.'
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <h2 class="sub-header">Example - Calculations</h2>
+
+            <p class="basic-text">In the examples so far, conditional statements were used to decide how to set the
+                values of variables. But you can also use conditional statements to perform different calculations.</p>
+            <p class="basic-text">In this next example, say you live in a country with only two tax brackets. Everyone
+                earning less than 12,000 pays 25% in taxes, and anyone earning 12,000 or more pays 30%. The function
+                below calculates how much tax is owed.</p>
+
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+def get_taxes(earnings):
+    if earnings < 12000:
+        tax_owed = .25 * earnings
+    else:
+        tax_owed = .30 * earnings
+    return tax_owed
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+            </div>
+
+            <p class="basic-text">The next code cell uses the function.</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+ana_taxes = get_taxes(9000)
+bob_taxes = get_taxes(15000)
+
+print(ana_taxes)
+print(bob_taxes)
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+2250.0
+4500.0
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text">In each case, we call the <span class="inline-code">get_taxes()</span> function and
+                use the value that is returned to set the value of a variable.</p>
+
+            <ul class="lists">
+                <li class="list-content basic-text">For <span class="inline-code">ana_taxes</span>, we calculate taxes
+                    owed by a person who earns 9,000. In this case, we call the <span
+                        class="inline-code">get_taxes()</span> function with <span class="inline-code">earnings</span>
+                    set to <span class="inline-code">9000</span>. Thus, <span class="inline-code">earnings <
+                            12000</span> is <span class="inline-code">True</span>, and <span
+                                class="inline-code">tax_owed</span> is set to <span class="inline-code">.25 *
+                                9000</span>. Then we return the value of <span class="inline-code">tax_owed</span>.</li>
+                <li class="list-content basic-text">For <span class="inline-code">bob_taxes</span>, we calculate taxes
+                    owed by a person who earns 15,000. In this case, we call the <span
+                        class="inline-code">get_taxes()</span> function with <span class="inline-code">earnings</span>
+                    set to <span class="inline-code">15000</span>. Thus, <span class="inline-code">earnings <
+                            12000</span> is <span class="inline-code">False</span>, and <span
+                                class="inline-code">tax_owed</span> is set to <span class="inline-code">.30 *
+                                15000</span>. Then we return the value of <span class="inline-code">tax_owed</span>.
+                </li>
+            </ul>
+
+            <p class="basic-text">Before we move on to another example - remember the <span
+                    class="inline-code">add_three_or_eight()</span> function from the introduction? It accepts a number
+                as input and adds three if the input is less than 10, and otherwise adds eight. Can you figure out how
+                you would write this function? Once you have an answer, click on the "Show hidden code" button below to
+                see the solution.</p>
+
+            <div class="show-and-hide-question">
+                <p class="basic-text show-toggle">Show hidden code</p>
+                <p class="basic-text hide-toggle hide-question-toggle">Hide code</p>
+                <hr class="hideline">
+            </div>
+
+            <div class="code-snippet-container adjust-stuff hidden-question">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+def add_three_or_eight(number):
+    if number < 10:
+        result = number + 3
+    else:
+        result = number + 8
+    return result
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+            </div>
+
+            <h2 class="sub-header">Example - Multiple "elif" statements</h2>
+            <p class="basic-text">So far, you have seen "elif" used only once in a function. But there's no limit to the
+                number of "elif" statements you can use. For instance, the next block of code calculates the dose of
+                medication (in milliliters) to give to a child, based on weight (in kilograms).</p>
+            <p class="basic-text"><b>Note</b>: This function should not be used as medical advice, and represents a fake
+                medication.</p>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+def get_dose(weight):
+    # Dosage is 1.25 ml for anyone under 5.2 kg
+    if weight < 5.2:
+        dose = 1.25
+    elif weight < 7.9:
+        dose = 2.5
+    elif weight < 10.4:
+        dose = 3.75
+    elif weight < 15.9:
+        dose = 5
+    elif weight < 21.2:
+        dose = 7.5
+    # Dosage is 10 ml for anyone 21.2 kg or over
+    else:
+        dose = 10
+    return dose
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+            </div>
+
+            <p class="basic-text">The next code cell runs the function. Make sure that the output makes sense to you!
+            </p>
+
+            <ul class="lists">
+                <li class="list-content basic-text">In this case, the "if" statement was <span
+                        class="inline-code">False</span>, and all of the "elif" statements evaluate to <span
+                        class="inline-code">False</span>, until we get to <span class="inline-code">weight < 15.9</span>
+                            , which is <span class="inline-code">True</span>, and <span class="inline-code">dose</span>
+                            is set to 5.</li>
+                <li class="list-content basic-text">Once an "elif" statement evaluates to <span
+                        class="inline-code">True</span> and the code block is run, the function skips over all remaining
+                    "elif" and "else" statements. After skipping these, all that is left is the return statement, which
+                    returns the value of <span class="inline-code">dose</span>.</li>
+                <li class="list-content basic-text">The order of the <span class="inline-code">elif</span> statements
+                    does matter here! Re-ordering the statements will return a very different result.</li>
+            </ul>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+print(get_dose(12))
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+5
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text">Make sure this makes sense to you! Once you're ready, use the link below to move on to the exercise.</p>
 
             <div class="navigation" style="display: flex; justify-content: space-between; font-size: 100px;">
                 <div class="previous" style="cursor: pointer;"><a href="ChapterThree.html"
                         style="text-decoration: none;">&leftarrow;</a></div>
-                <div class="next" style="cursor: pointer;"><a href="" style="text-decoration: none;">&rightarrow;</a></div>
+                <div class="next" style="cursor: pointer;"><a href="" style="text-decoration: none;">&rightarrow;</a>
+                </div>
             </div>
 
         </div>
@@ -335,6 +592,27 @@ Normal temperature.
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
     <script>hljs.highlightAll();</script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const showToggle = document.querySelector('.show-toggle');
+            const hideToggle = document.querySelector('.hide-toggle');
+            const codeSnippetContainer = document.querySelector('.hidden-question');
+
+            showToggle.addEventListener('click', function () {
+                codeSnippetContainer.style.display = 'block';
+                showToggle.style.display = 'none';
+                hideToggle.style.display = 'block';
+            });
+
+            hideToggle.addEventListener('click', function () {
+                codeSnippetContainer.style.display = 'none';
+                showToggle.style.display = 'block';
+                hideToggle.style.display = 'none';
+            });
+        });
+
+    </script>
 </body>
 
 </html>

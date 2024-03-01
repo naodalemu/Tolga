@@ -11,7 +11,7 @@
 }
 
 .aligner {
-    width: 40%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -223,6 +223,37 @@ pre code.hljs::-webkit-scrollbar {
     list-style-type: square;
 }
 
+.show-and-hide-question {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.show-toggle, .hide-toggle {
+    position: absolute;
+    background: white;
+    padding: 0px 10px;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+.hideline {
+    margin: 10px 0px;
+    background: grey;
+    border: none;
+    height: 1px;
+    width: 100%;
+}
+
+.hide-question-toggle {
+    display: none;
+}
+
+.hidden-question {
+    display: none;
+}
 /* @media screen and (max-width: 1110px) {
     .line {
         height: 740px;
