@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <title>Conditions and Conditional Statements</title>
+</head>
+
+<body>
+
+    <section class="main-container">
+
+        <div class="aligner">
+
+            <h1 class="chapter-title">Conditions and Conditional Statements</h1>
+            <p class="title-description">Modify how functions run, depending on the input.</p>
+
+            <h2 class="sub-header">Introduction</h2>
+            <p class="basic-text">You have already seen that when you change the input value to a function, you often
+                get a different output. For instance, consider an <span class="inline-code">add_five()</span> function
+                that just adds five to any number and returns the result. Then <span
+                    class="inline-code">add_five(7)</span> will return an output of 12 (=7+5), and <span
+                    class="inline-code">add_five(8)</span> will return an output of 13 (=8+5). Note that no matter what
+                the input is, the action that the function performs is always the same: it always adds five.</p>
+            <p class="basic-text">But you might instead need a function that performs an action that depends on the
+                input. For instance, you might need a function <span class="inline-code">add_three_or_eight()</span>
+                that adds three if the input is less than 10, and adds eight if the input is 10 or more. Then <span
+                    class="inline-code">add_three_or_eight(1)</span> will return 4 (= 1+3), but <span
+                    class="inline-code">add_three_or_eight(11)</span> will return 19 (=11+8). In this case, the action
+                that the function performs varies with the input.</p>
+            <p class="basic-text">In this lesson, you will learn how to use conditions and conditional statements to
+                modify how your functions run.</p>
+
+            <h2 class="sub-header">Conditions</h2>
+            <p class="basic-text">In programming, <b>conditions</b> are statements that are either <span
+                    class="inline-code">True</span> or <span class="inline-code">False</span>. There are many different
+                ways to write conditions in Python, but some of the most common ways of writing conditions just compare
+                two different values. For instance, you can check if 2 is greater than 3.</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+print(2 > 3)                        
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+False
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text">Python identifies this as False, since 2 is not greater than 3.</p>
+            <p class="basic-text">You can also use conditions to compare the values of variables. In the next code cell,
+                <span class="inline-code">var_one</span> has a value of 1, and <span class="inline-code">var_two</span>
+                has a value of two. In the conditions, we check if <span class="inline-code">var_one</span> is less than
+                1 (which is <span class="inline-code">False</span>), and we check if <span
+                    class="inline-code">var_two</span> is greater than or equal to <span
+                    class="inline-code">var_one</span> (which is <span class="inline-code">True</span>).
+            </p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+var_one = 1
+var_two = 2
+
+print(var_one < 1)
+print(var_two >= var_one)
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+False
+True
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text">For a list of common symbols you can use to construct conditions, check out the chart
+                below.</p>
+
+            <div class="table_component" role="region" tabindex="0">
+                <table>
+                    <thead>
+                        <tr>
+                            <th><b>Symbol</b></th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>&equals;&equals;</td>
+                            <td>equals</td>
+                        </tr>
+                        <tr>
+                            <td>&excl;&equals;</td>
+                            <td>does not equal</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;</td>
+                            <td>less than</td>
+                        </tr>
+                        <tr>
+                            <td>&lt;&equals;</td>
+                            <td>less than or equal to</td>
+                        </tr>
+                        <tr>
+                            <td>&gt;</td>
+                            <td>greater than</td>
+                        </tr>
+                        <tr>
+                            <td>&gt;&equals;</td>
+                            <td>greater than or equal to</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="basic-text"><b>Important Note</b>: When you check two values are equal, make sure you use the
+                &equals;&equals; sign, and not the &equals; sign.</p>
+            <ul class="lists">
+                <li class="list-content basic-text"><span class="inline-code">var_one==1</span> checks if the value of
+                    <span class="inline-code">var_one</span> is 1, but
+                </li>
+                <li class="list-content basic-text"><span class="inline-code">var_one=1</span> sets the value of <span
+                        class="inline-code">var_one</span> to 1.</li>
+            </ul>
+
+            <h2 class="sub-header">Conditional statements</h2>
+            <p class="basic-text">Conditional statements use conditions to modify how your function runs. They check the
+                value of a condition, and if the condition evaluates to <span class="inline-code">True</span>, then a
+                certain block of code is executed. (Otherwise, if the condition is <span
+                    class="inline-code">False</span>, then the code is not run.)</p>
+            <p class="basic-text">You will see several examples of this in the following sections.</p>
+
+            <h3 class="small-sub-header sub-header">"if" statements</h3>
+            <p class="basic-text">The simplest type of conditional statement is an "if" statement. You can see an
+                example of this in the <span class="inline-code">evaluate_temp()</span> function below. The function
+                accepts a body temperature (in Celcius) as input.</p>
+
+            <ul class="lists">
+                <li class="list-content basic-text">Initially, <span class="inline-code">message</span> is set to <span
+                        class="inline-code">"Normal temperature"</span>.</li>
+                <li class="list-content basic-text">Then, if <span class="inline-code">temp > 38</span> is <span
+                        class="inline-code">True</span> (e.g., the body temperature is greater than 38°C), the message
+                    is updated to <span class="inline-code">"Fever!"</span>. Otherwise, if <span
+                        class="inline-code">temp > 38</span> is False, then the message is not updated.</li>
+                <li class="list-content basic-text">Finally, <span class="inline-code">message</span> is returned by the
+                    function.</li>
+            </ul>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+def evaluate_temp(temp):
+    # Set an initial message
+    message = "Normal temperature."
+    # Update value of message only if temperature greater than 38
+    if temp > 38:
+        message = "Fever!"
+    return message
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+            </div>
+
+            <p class="basic-text">In the next code cell, we call the function, where the temperature is 37°C. The
+                message is <span class="inline-code">"Normal temperature"</span>, because the temperature is less
+                than 38°C (<span class="inline-code">temp > 38</span> evaluates to <span
+                    class="inline-code">False</span>) in this case.</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+print(evaluate_temp(37))
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+Normal temperature.
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text">However, if the temperature is instead 39°C, since this is greater than 38°C, the
+                message is updated to <span class="inline-code">"Fever!"</span>.</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+print(evaluate_temp(39))
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+Fever!
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text">Note that there are two levels of indentation:</p>
+
+            <ul class="lists">
+                <li class="list-content basic-text">The first level of indentation is because we always need to indent
+                    the code block inside a function.</li>
+                <li class="list-content basic-text">The second level of indentation is because we also need to indent
+                    the code block belonging to the "if" statement. (As you'll see, we'll also need to indent the code
+                    blocks for "elif" and "else" statements.)</li>
+            </ul>
+
+            <p class="basic-text">Note that because the return statement is not indented under the "if" statement, it is
+                always executed, whether <span class="inline-code">temp > 38</span> is <span
+                    class="inline-code">True</span> or <span class="inline-code">False</span>.</p>
+
+            <h3 class="small-sub-header sub-header">"if ... else" statements</h3>
+            <p class="basic-text">We can use "else" statements to run code if a statement is <span
+                    class="inline-code">False</span>. The code under the "if" statement is run if the statement is <span
+                    class="inline-code">True</span>, and the code under "else" is run if the statement is <span
+                    class="inline-code">False</span>.</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+def evaluate_temp_with_else(temp):
+if temp > 38:
+        message = "Fever!"
+        else:
+        message = "Normal temperature."
+    return message
+</code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+            </div>
+
+            <p class="basic-text">This <span class="inline-code">evaluate_temp_with_else()</span> function has
+                equivalent behavior to the <span class="inline-code">evaluate_temp()</span> function.</p>
+
+            <p class="basic-text">In the next code cell, we call this new function, where the temperature is 37°C. In
+                this case, <span class="inline-code">temp > 38</span> evaluates to <span
+                    class="inline-code">False</span>, so the code under the "else" statement is executed, and the <span
+                    class="inline-code">Normal temperature.</span> message is returned.</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+print(evaluate_temp_with_else(37))
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+Normal temperature.
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text">As with the previous function, we indent the code blocks after the "if" and "else"
+                statements.</p>
+
+            <h3 class="small-sub-header sub-header">"if ... elif ... else" statements</h3>
+            <p class="basic-text">We can use "elif" (which is short for "else if") to check if multiple conditions might be true. The function below:</p>
+
+            <ul class="lists">
+                <li class="list-content basic-text">First checks if <span class="inline-code">temp > 38</span>. If this is true, then the message is set to <span class="inline-code">"Fever!"</span>.</li>
+                <li class="list-content basic-text">As long as the message has not already been set, the function then checks if <span class="inline-code">temp > 38</span>. If this is true, then the message is set to <span class="inline-code">"Normal temperature."</span>.</li>
+                <li class="list-content basic-text">Then, if still no message has been set, the "else" statement ensures that the message is set to <span class="inline-code">"Low temperature."</span> message is printed.</li>
+            </ul>
+
+            <div class="navigation" style="display: flex; justify-content: space-between; font-size: 100px;">
+                <div class="previous" style="cursor: pointer;"><a href="ChapterThree.html"
+                        style="text-decoration: none;">&leftarrow;</a></div>
+                <div class="next" style="cursor: pointer;"><a href="" style="text-decoration: none;">&rightarrow;</a></div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+
+</html>
