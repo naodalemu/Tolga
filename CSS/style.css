@@ -92,6 +92,10 @@
     margin-bottom: 50px;
 }
 
+.adjust-title-desc {
+    margin-bottom: 10px;
+}
+
 .sub-header {
     margin-top: 40px;
     margin-bottom: 12px;
@@ -113,7 +117,7 @@
 }
 
 .code-snippet-container {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .try-it {
@@ -142,10 +146,6 @@
 
 pre code.hljs {
     padding: 0 30px 40px 30px;
-}
-
-pre code.hljs::-webkit-scrollbar {
-    display: none;
 }
 
 .error-result {
@@ -254,62 +254,9 @@ pre code.hljs::-webkit-scrollbar {
 .hidden-question {
     display: none;
 }
-/* @media screen and (max-width: 1110px) {
-    .line {
-        height: 740px;
+
+@media screen and (min-width: 425px) {
+    pre code.hljs::-webkit-scrollbar {
+        display: none;
     }
 }
-
-@media screen and (max-width: 1024px) {
-    .line {
-        height: 800px;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .line {
-        height: 850px;
-    }
-}
-
-@media screen and (max-width: 640px) {
-    .line {
-        height: 900px;
-    }
-}
-
-@media screen and (max-width: 580px) {
-    .line {
-        height: 1000px;
-    }
-}
-
-@media screen and (max-width: 540px) {
-    .line {
-        height: 1200px;
-    }
-}
-
-@media screen and (max-width: 425px) {
-    .line {
-        height: 1300px;
-    }
-}
-
-@media screen and (max-width: 375px) {
-    .line {
-        height: 1400px;
-    }
-}
-
-@media screen and (max-width: 350px) {
-    .line {
-        height: 1500px;
-    }
-}
-
-@media screen and (max-width: 325px) {
-    .line {
-        height: 1700px;
-    }
-} */

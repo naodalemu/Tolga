@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <title>Intro to Lists</title>
+</head>
+<body>
+    
+    <section class="main-container">
+
+        <div class="aligner">
+
+            <h1 class="chapter-title">Intro to Lists</h1>
+            <p class="title-description adjust-title-desc">Organize your data so you can work with it efficiently.</p>
+
+            <h2 class="sub-header">Introduction</h2>
+            <p class="basic-text">When doing data science, you need a way to organize your data so you can work with it efficiently. Python has many data structures available for holding your data, such as lists, sets, dictionaries, and tuples. In this tutorial, you will learn how to work with Python lists.</p>
+            
+            <h2 class="sub-header">Motivation</h2>
+            <p class="basic-text">In the Petal to the Metal competition, your goal is to classify the species of a flower based only on its image. (This is a common task in computer vision, and it is called image classification.) Towards this goal, say you organize the names of the flower species in the data.</p>
+            <p class="basic-text">One way to do this is by organizing the names in a Python string.</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+flowers = "pink primrose,hard-leaved pocket orchid,canterbury bells,sweet pea,english marigold,tiger lily,moon orchid,bird of paradise,monkshood,globe thistle"
+
+print(type(flowers))
+print(flowers)                        
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+&lt;class 'str'&gt;
+pink primrose,hard-leaved pocket orchid,canterbury bells,sweet pea,english marigold,tiger lily,moon orchid,bird of paradise,monkshood,globe thistle
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text">Even better is to represent the same data in a Python list. To create a list, you need to use square brackets (<span class="inline-code">[</span>, <span class="inline-code">]</span>) and separate each item with a comma. Every item in the list is a Python string, so each is enclosed in quotation marks.</p>
+            
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+flowers_list = ["pink primrose", "hard-leaved pocket orchid", "canterbury bells", "sweet pea", "english marigold", "tiger lily", "moon orchid", "bird of paradise", "monkshood", "globe thistle"]
+
+print(type(flowers_list))
+print(flowers_list)
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+&lt;class 'list'&gt;
+['pink primrose', 'hard-leaved pocket orchid', 'canterbury bells', 'sweet pea', 'english marigold', 'tiger lily', 'moon orchid', 'bird of paradise', 'monkshood', 'globe thistle']
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text">At first glance, it doesn't look too different, whether you represent the information in a Python string or list. But as you will see, there are a lot of tasks that you can more easily do with a list. For instance, a list will make it easier to:</p>
+
+            <ul class="lists">
+                <li class="list-content basic-text">get an item at a specified position (first, second, third, etc),</li>
+                <li class="list-content basic-text">check the number of items, and</li>
+                <li class="list-content basic-text">add and remove items.</li>
+            </ul>
+
+            <h2 class="sub-header">Lists</h2>
+
+            <h3 class="small-sub-header sub-header">Length</h3>
+            <p class="basic-text">We can count the number of entries in any list with <span class="inline-code">len()</span>, which is short for "length". You need only supply the name of the list in the parentheses.</p>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# The list has ten entries
+print(len(flowers_list))
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+10
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <h3 class="small-sub-header sub-header">Indexing</h3>
+            <p class="basic-text">We can refer to any item in the list according to its position in the list (first, second, third, etc). This is called <b>indexing</b>.</p>
+            <p class="basic-text">Note that Python uses zero-based indexing, which means that:</p>
+            <ul class="lists">
+                <li class="list-content basic-text">to pull the first entry in the list, you use 0,</li>
+                <li class="list-content basic-text">to pull the second entry in the list, you use 1, and</li>
+                <li class="list-content basic-text">to pull the final entry in the list, you use one less than the length of the list.</li>
+            </ul>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+print("First entry:", flowers_list[0])
+print("Second entry:", flowers_list[1])
+
+# The list has length ten, so we refer to final entry with 9
+print("Last entry:", flowers_list[9])
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+First entry: pink primrose
+Second entry: hard-leaved pocket orchid
+Last entry: globe thistle
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text">Side Note: You may have noticed that in the code cell above, we use a single <span class="inline-code">print()</span> to print multiple items (both a Python string (like <span class="inline-code">"First entry:"</span>) and a value from the list (like <span class="inline-code">flowers_list[0]</span>). To print multiple things in Python with a single command, we need only separate them with a comma.</p>
+            
+            <h3 class="small-sub-header sub-header">Slicing</h3>
+            <p class="basic-text">You can also pull a segment of a list (for instance, the first three entries or the last two entries). This is called <b>slicing</b>. For instance:</p>
+            
+            <ul class="lists">
+                <li class="list-content basic-text">to pull the first <span class="inline-code">x</span> entries, you use <span class="inline-code">[:x]</span>, and</li>
+                <li class="list-content basic-text">to pull the last <span class="inline-code">y</span> entries, you use <span class="inline-code">[-y:]</span>.</li>
+            </ul>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+print("First three entries:", flowers_list[:3])
+print("Final two entries:", flowers_list[-2:])
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+First three entries: ['pink primrose', 'hard-leaved pocket orchid', 'canterbury bells']
+Final two entries: ['monkshood', 'globe thistle']
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text">As you can see above, when we slice a list, it returns a new, shortened list.</p>
+            
+            <h3 class="small-sub-header sub-header">Removing items</h3>
+            <p class="basic-text">Remove an item from a list with <span class="inline-code">.remove()</span>, and put the item you would like to remove in parentheses.</p>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+flowers_list.remove("globe thistle")
+print(flowers_list)
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+['pink primrose', 'hard-leaved pocket orchid', 'canterbury bells', 'sweet pea', 'english marigold', 'tiger lily', 'moon orchid', 'bird of paradise', 'monkshood']
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <h3 class="small-sub-header sub-header">Lists are not just for strings</h3>
+            <p class="basic-text">So far, we have only worked with lists where each item in the list is a string. But lists can have items with any data type, including booleans, integers, and floats.</p>
+            <p class="basic-text">As an example, consider hardcover book sales in the first week of April 2000 in a retail store.</p>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+hardcover_sales = [139, 128, 172, 139, 191, 168, 170]
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+            </div>
+            
+            <p class="basic-text">Here, <span class="inline-code">hardcover_sales</span> is a list of integers. Similar to when working with strings, you can still do things like get the length, pull individual entries, and extend the list.</p>
+            
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+print("Length of the list:", len(hardcover_sales))
+print("Entry at index 2:", hardcover_sales[2])
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+Length of the list: 7
+Entry at index 2: 172
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text">You can also get the minimum with <span class="inline-code">min()</span> and the maximum with <span class="inline-code">max()</span>.</p>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+print("Minimum:", min(hardcover_sales))
+print("Maximum:", max(hardcover_sales))
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+Minimum: 128
+Maximum: 191
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text">To add every item in the list, use <span class="basic-text">sum()</span>.</p>
+
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+print("Total books sold in one week:", sum(hardcover_sales))
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+Total books sold in one week: 1107
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text">We can also do similar calculations with slices of the list. In the next code cell, we take the sum from the first five days (<span class="inline-code">sum(hardcover_sales[:5])</span>), and then divide by five to get the average number of books sold in the first five days.</p>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+print("Average books sold in first five days:", sum(hardcover_sales[:5])/5)
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+Average books sold in first five days: 153.8
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+
+            <div class="navigation" style="display: flex; justify-content: space-between; font-size: 100px;">
+                <div class="previous" style="cursor: pointer;"><a href="ChapterFour.html"
+                    style="text-decoration: none;">&leftarrow;</a></div>
+                <div class="next" style="cursor: pointer;"><a href="" style="text-decoration: none;">&rightarrow;</a>
+                </div>
+            </div>
+
+
+        </div>
+        
+    </section>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
