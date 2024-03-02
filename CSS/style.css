@@ -165,6 +165,19 @@ pre code.hljs {
     font-size: 14px;
 }
 
+.table_component::-webkit-scrollbar {
+    height: 5px;
+}
+
+.table_component::-webkit-scrollbar-track {
+    background: darkgray;
+}
+
+.table_component::-webkit-scrollbar-thumb {
+    background-color: gray;
+    border-radius: 5px;
+}
+
 .table_component table {
     border: 1px solid #dededf;
     height: auto;
@@ -231,7 +244,8 @@ pre code.hljs {
     position: relative;
 }
 
-.show-toggle, .hide-toggle {
+.show-toggle,
+.hide-toggle {
     position: absolute;
     background: white;
     padding: 0px 10px;
@@ -253,6 +267,11 @@ pre code.hljs {
 
 .hidden-question {
     display: none;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
 }
 
 @media screen and (min-width: 425px) {

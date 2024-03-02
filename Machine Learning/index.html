@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <title>How Models Work</title>
+</head>
+<body>
+    
+    <section class="main-container">
+
+        <div class="aligner">
+
+            <h1 class="chapter-title">How Models Work</h1>
+            <p class="title-description adjust-title-desc">The first step if you're new to machine learning.</p>
+
+            <h2 class="sub-header">Introduction</h2>
+            <p class="basic-text">We'll start with an overview of how machine learning models work and how they are used. This may feel basic if you've done statistical modeling or machine learning before. Don't worry, we will progress to building powerful models soon.</p>
+            <p class="basic-text">This course will have you build models as you go through following scenario:</p>
+            <p class="basic-text">Your cousin has made millions of dollars speculating on real estate. He's offered to become business partners with you because of your interest in data science. He'll supply the money, and you'll supply models that predict how much various houses are worth.</p>
+            <p class="basic-text">You ask your cousin how he's predicted real estate values in the past, and he says it is just intuition. But more questioning reveals that he's identified price patterns from houses he has seen in the past, and he uses those patterns to make predictions for new houses he is considering.</p>
+            <p class="basic-text">Machine learning works the same way. We'll start with a model called the Decision Tree. There are fancier models that give more accurate predictions. But decision trees are easy to understand, and they are the basic building block for some of the best models in data science.</p>
+            <p class="basic-text">For simplicity, we'll start with the simplest possible decision tree.</p>
+
+            <div class="image-container">
+                <img src="ML Image/7tsb5b1.png" alt="" class="image">
+            </div>
+
+            <p class="basic-text">It divides houses into only two categories. The predicted price for any house under consideration is the historical average price of houses in the same category.</p>
+            <p class="basic-text">We use data to decide how to break the houses into two groups, and then again to determine the predicted price in each group. This step of capturing patterns from data is called <b>fitting</b> or <b>training</b> the model. The data used to <b>fit</b> the model is called the <b>training data</b>.</p>
+            <p class="basic-text">The details of how the model is fit (e.g. how to split up the data) is complex enough that we will save it for later. After the model has been fit, you can apply it to new data to <b>predict</b> prices of additional homes.</p>
+            <hr>
+            <h2 class="sub-header">Improving the Decision Tree</h2>
+            <p class="basic-text">Which of the following two decision trees is more likely to result from fitting the real estate training data?</p>
+
+            <div class="image-container">
+                <img src="ML Image/prAjgku.png" alt="" class="image">
+            </div>
+            
+            <p class="basic-text">The decision tree on the left (Decision Tree 1) probably makes more sense, because it captures the reality that houses with more bedrooms tend to sell at higher prices than houses with fewer bedrooms. The biggest shortcoming of this model is that it doesn't capture most factors affecting home price, like number of bathrooms, lot size, location, etc.</p>
+            <p class="basic-text">You can capture more factors using a tree that has more "splits." These are called "deeper" trees. A decision tree that also considers the total size of each house's lot might look like this:</p>
+
+            <div class="image-container">
+                <img src="ML Image/R3ywQsR.png" alt="" class="image">
+            </div>
+
+            <p class="basic-text">You predict the price of any house by tracing through the decision tree, always picking the path corresponding to that house's characteristics. The predicted price for the house is at the bottom of the tree. The point at the bottom where we make a prediction is called a <b>leaf</b>.</p>
+            <p class="basic-text">The splits and values at the leaves will be determined by the data, so it's time for you to check out the data you will be working with.</p>
+
+            <div class="navigation" style="display: flex; justify-content: space-between; font-size: 100px;">
+                <div class="previous" style="cursor: pointer;"><a href=""
+                    style="text-decoration: none;">&leftarrow;</a></div>
+                <div class="next" style="cursor: pointer;"><a href="" style="text-decoration: none;">&rightarrow;</a>
+                </div>
+            </div>
+
+
+        </div>
+        
+    </section>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
