@@ -158,6 +158,10 @@ pre code.hljs {
 
 /* Table */
 
+th {
+    font-weight: normal;
+}
+
 .table_component {
     overflow: auto;
     width: 100%;

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <title>Your First Machine Learning Model</title>
+</head>
+
+<body>
+
+    <section class="main-container">
+
+        <div class="aligner">
+
+            <h1 class="chapter-title">Your First Machine Learning Model</h1>
+            <p class="title-description adjust-title-desc">Building your first model. Hurray!</p>
+
+            <h2 class="sub-header">Selecting Data for Modeling</h2>
+            <p class="basic-text">Your dataset had too many variables to wrap your head around, or even to print out
+                nicely. How can you pare down this overwhelming amount of data to something you can understand?</p>
+            <p class="basic-text">We'll start by picking a few variables using our intuition. Later courses will show
+                you statistical techniques to automatically prioritize variables.</p>
+            <p class="basic-text">To choose variables/columns, we'll need to see a list of all columns in the dataset.
+                That is done with the columns property of the DataFrame (the bottom line of code below).</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+import pandas as pd
+
+melbourne_file_path = '../input/melbourne-housing-snapshot/melb_data.csv'
+melbourne_data = pd.read_csv(melbourne_file_path) 
+melbourne_data.columns
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+Index(['Suburb', 'Address', 'Rooms', 'Type', 'Price', 'Method', 'SellerG',
+'Date', 'Distance', 'Postcode', 'Bedroom2', 'Bathroom', 'Car',
+'Landsize', 'BuildingArea', 'YearBuilt', 'CouncilArea', 'Lattitude',
+'Longtitude', 'Regionname', 'Propertycount'],
+dtype='object')
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                    <code class="language-python">
+# The Melbourne data has some missing values (some houses for which some variables weren't recorded.)
+# We'll learn to handle missing values in a later tutorial.  
+# Your Iowa data doesn't have missing values in the columns you use. 
+# So we will take the simplest option for now, and drop houses from our data. 
+# Don't worry about this much for now, though the code is:
+
+# dropna drops missing values (think of na as "not available")
+melbourne_data = melbourne_data.dropna(axis=0)
+                    </code>
+                  </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+            </div>
+
+            <p class="basic-text">There are many ways to select a subset of your data. The Pandas course covers these in
+                more depth, but we will focus on two approaches for now.</p>
+            <ol class="lists">
+                <li class="list-content basic-text">Dot notation, which we use to select the "prediction target"</li>
+                <li class="list-content basic-text">Selecting with a column list, which we use to select the "features"
+                </li>
+            </ol>
+
+            <h3 class="small-sub-header sub-header">Selecting The Prediction Target</h3>
+            <p class="basic-text">You can pull out a variable with <b>dot-notation</b>. This single column is stored in
+                a <b>Series</b>, which is broadly like a DataFrame with only a single column of data.</p>
+            <p class="basic-text">We'll use the dot notation to select the column we want to predict, which is called
+                the <b>prediction target</b>. By convention, the prediction target is called <b>y</b>. So the code we
+                need to save the house prices in the Melbourne data is</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+y = melbourne_data.Price
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+            </div>
+
+            <h2 class="sub-header">Choosing "Features"</h2>
+            <p class="basic-text">The columns that are inputted into our model (and later used to make predictions) are
+                called "features." In our case, those would be the columns used to determine the home price. Sometimes,
+                you will use all columns except the target as features. Other times you'll be better off with fewer
+                features.</p>
+            <p class="basic-text">For now, we'll build a model with only a few features. Later on you'll see how to
+                iterate and compare models built with different features.</p>
+            <p class="basic-text">We select multiple features by providing a list of column names inside brackets. Each
+                item in that list should be a string (with quotes).</p>
+            <p class="basic-text">Here is an example:</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+melbourne_features = ['Rooms', 'Bathroom', 'Landsize', 'Lattitude', 'Longtitude']
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+            </div>
+
+            <p class="basic-text">By convention, this data is called <b>X</b>.</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+X = melbourne_data[melbourne_features]
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+            </div>
+
+            <p class="basic-text">Let's quickly review the data we'll be using to predict house prices using the
+                describe method and the head method, which shows the top few rows.</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+X.describe()
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+            </div>
+
+            <div class="table_component basic-text" role="region" tabindex="0">
+                <table border="1" class="dataframe">
+                    <thead>
+                        <tr style="text-align: right;">
+                            <th></th>
+                            <th>Rooms</th>
+                            <th>Bathroom</th>
+                            <th>Landsize</th>
+                            <th>Lattitude</th>
+                            <th>Longtitude</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>count</th>
+                            <td>6196.000000</td>
+                            <td>6196.000000</td>
+                            <td>6196.000000</td>
+                            <td>6196.000000</td>
+                            <td>6196.000000</td>
+                        </tr>
+                        <tr>
+                            <th>mean</th>
+                            <td>2.931407</td>
+                            <td>1.576340</td>
+                            <td>471.006940</td>
+                            <td>-37.807904</td>
+                            <td>144.990201</td>
+                        </tr>
+                        <tr>
+                            <th>std</th>
+                            <td>0.971079</td>
+                            <td>0.711362</td>
+                            <td>897.449881</td>
+                            <td>0.075850</td>
+                            <td>0.099165</td>
+                        </tr>
+                        <tr>
+                            <th>min</th>
+                            <td>1.000000</td>
+                            <td>1.000000</td>
+                            <td>0.000000</td>
+                            <td>-38.164920</td>
+                            <td>144.542370</td>
+                        </tr>
+                        <tr>
+                            <th>25%</th>
+                            <td>2.000000</td>
+                            <td>1.000000</td>
+                            <td>152.000000</td>
+                            <td>-37.855438</td>
+                            <td>144.926198</td>
+                        </tr>
+                        <tr>
+                            <th>50%</th>
+                            <td>3.000000</td>
+                            <td>1.000000</td>
+                            <td>373.000000</td>
+                            <td>-37.802250</td>
+                            <td>144.995800</td>
+                        </tr>
+                        <tr>
+                            <th>75%</th>
+                            <td>4.000000</td>
+                            <td>2.000000</td>
+                            <td>628.000000</td>
+                            <td>-37.758200</td>
+                            <td>145.052700</td>
+                        </tr>
+                        <tr>
+                            <th>max</th>
+                            <td>8.000000</td>
+                            <td>8.000000</td>
+                            <td>37000.000000</td>
+                            <td>-37.457090</td>
+                            <td>145.526350</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+X.head()
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+            </div>
+
+            <div class="table_component basic-text" role="region" tabindex="0">
+                <table border="1" class="dataframe">
+                    <thead>
+                        <tr style="text-align: right;">
+                            <th></th>
+                            <th>Rooms</th>
+                            <th>Bathroom</th>
+                            <th>Landsize</th>
+                            <th>Lattitude</th>
+                            <th>Longtitude</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>1</th>
+                            <td>2</td>
+                            <td>1.0</td>
+                            <td>156.0</td>
+                            <td>-37.8079</td>
+                            <td>144.9934</td>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <td>3</td>
+                            <td>2.0</td>
+                            <td>134.0</td>
+                            <td>-37.8093</td>
+                            <td>144.9944</td>
+                        </tr>
+                        <tr>
+                            <th>4</th>
+                            <td>4</td>
+                            <td>1.0</td>
+                            <td>120.0</td>
+                            <td>-37.8072</td>
+                            <td>144.9941</td>
+                        </tr>
+                        <tr>
+                            <th>6</th>
+                            <td>3</td>
+                            <td>2.0</td>
+                            <td>245.0</td>
+                            <td>-37.8024</td>
+                            <td>144.9993</td>
+                        </tr>
+                        <tr>
+                            <th>7</th>
+                            <td>2</td>
+                            <td>1.0</td>
+                            <td>256.0</td>
+                            <td>-37.8060</td>
+                            <td>144.9954</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="basic-text">Visually checking your data with these commands is an important part of a data scientist's job. You'll frequently find surprises in the dataset that deserve further inspection.</p>
+
+            <br>
+            <hr>
+            <br>
+
+            <h2 class="sub-header">Building Your Model</h2>
+            <p class="basic-text">You will use the <b>scikit-learn</b> library to create your models. When coding, this library is written as <b>sklearn</b>, as you will see in the sample code. Scikit-learn is easily the most popular library for modeling the types of data typically stored in DataFrames.</p>
+            <p class="basic-text">The steps to building and using a model are:</p>
+            <ul class="lists">
+                <li class="list-content basic-text"><b>Define</b>: What type of model will it be? A decision tree? Some other type of model? Some other parameters of the model type are specified too.</li>
+                <li class="list-content basic-text"><b>Fit</b>: Capture patterns from provided data. This is the heart of modeling.</li>
+                <li class="list-content basic-text"><b>Predict</b>: Just what it sounds like</li>
+                <li class="list-content basic-text"><b>Evaluate</b>: Determine how accurate the model's predictions are.</li>
+            </ul>
+
+            <p class="basic-text">Here is an example of defining a decision tree model with scikit-learn and fitting it with the features and target variable.</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+from sklearn.tree import DecisionTreeRegressor
+
+# Define model. Specify a number for random_state to ensure same results each run
+melbourne_model = DecisionTreeRegressor(random_state=1)
+
+# Fit model
+melbourne_model.fit(X, y)
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+DecisionTreeRegressor(random_state=1)
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text">Many machine learning models allow some randomness in model training. Specifying a number for <span class="inline-code">random_state</span> ensures you get the same results in each run. This is considered a good practice. You use any number, and model quality won't depend meaningfully on exactly what value you choose.</p>
+            <p class="basic-text">We now have a fitted model that we can use to make predictions.</p>
+            <p class="basic-text">In practice, you'll want to make predictions for new houses coming on the market rather than the houses we already have prices for. But we'll make predictions for the first few rows of the training data to see how the predict function works.</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+print("Making predictions for the following 5 houses:")
+print(X.head())
+print("The predictions are")
+print(melbourne_model.predict(X.head()))
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Making Prediction for the following 5 houses:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+   Rooms  Bathroom  Landsize  Lattitude  Longtitude
+1      2       1.0     156.0   -37.8079    144.9934
+2      3       2.0     134.0   -37.8093    144.9944
+4      4       1.0     120.0   -37.8072    144.9941
+6      3       2.0     245.0   -37.8024    144.9993
+7      2       1.0     256.0   -37.8060    144.9954
+
+The predictions are
+[1035000. 1465000. 1600000. 1876000. 1636000.]
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <div class="navigation" style="display: flex; justify-content: space-between; font-size: 100px;">
+                <div class="previous" style="cursor: pointer;"><a href="ChapterTwo.html"
+                        style="text-decoration: none;">&leftarrow;</a></div>
+                <div class="next" style="cursor: pointer;"><a href="" style="text-decoration: none;">&rightarrow;</a>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+
+</html>
