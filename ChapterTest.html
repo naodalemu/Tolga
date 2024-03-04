@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <title>Test</title>
+</head>
+
+<body>
+
+    <section class="main-container">
+
+        <div class="aligner">
+
+            <h1 class="chapter-title">Loops</h1>
+            <p class="basic-text">Loops are a way to repeatedly execute some code. Here's an example:</p>
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre><code class="language-python">
+planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
+for planet in planets:
+    print(planet, end=' ') # print all on same line</code></pre>
+                </div>
+            </div>
+            <p class="basic-text">Mercury Venus Earth Mars Jupiter Saturn Uranus Neptune</p>
+            <p class="basic-text">The for loop specifies the variable name to use (in this case, planet) the set of values to loop over (in this case, planets). You use the word "in" to link them together.</p>
+            <p class="basic-text">The object to the right of the "in" can be any object that supports iteration. Basically, if it can be thought of as a group of things, you can probably loop over it. In addition to lists, we can iterate over the elements of a tuple:</p>
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre><code class="language-python">
+multiplicands = (2, 2, 2, 3, 3, 5)
+product = 1
+for mult in multiplicands:
+    product = product * mult
+product</code></pre>
+                </div>
+            </div>
+            <p class="basic-text">360</p>
+            <p class="basic-text">You can even loop through each character in a string:</p>
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre><code class="language-python">
+s = 'steganograpHy is the practicE of conceaLing a file, message, image, or video within another fiLe, message, image, Or video.'
+msg = ''
+# print all the uppercase letters in s, one at a time
+for char in s:
+    if char.isupper():
+        print(char, end='')</code></pre>
+                </div>
+            </div>
+            <p class="basic-text">HELLO</p>
+            <p class="basic-text">range() is a function that returns a sequence of numbers. It turns out to be very useful for writing loops.</p>
+            <p class="basic-text">For example, if we want to repeat some action 5 times:</p>
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre><code class="language-python">
+for i in range(5):
+    print("Doing important work. i =", i)</code></pre>
+                </div>
+            </div>
+            <p class="basic-text">Doing important work. i = 0<br>Doing important work. i = 1<br>Doing important work. i = 2<br>Doing important work. i = 3<br>Doing important work. i = 4</p>
+            <h2 class="sub-header">while loops</h2>
+            <p class="basic-text">The other type of loop in Python is a while loop, which iterates until some condition is met:</p>
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre><code class="language-python">
+i = 0
+while i < 10:
+    print(i, end=' ')
+    i += 1 # increase the value of i by 1</code></pre>
+                </div>
+            </div>
+            <p class="basic-text">0 1 2 3 4 5 6 7 8 9</p>
+            <h2 class="sub-header">List comprehensions</h2>
+            <p class="basic-text">List comprehensions are one of Python's most beloved and unique features. The easiest way to understand them is probably to just look at a few examples:</p>
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre><code class="language-python">
+squares = [n**2 for n in range(10)]</code></pre>
+                </div>
+            </div>
+            <p class="basic-text">[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]</p>
+            <p class="basic-text">Here's how we would do the same thing without a list comprehension:</p>
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre><code class="language-python">
+squares = []
+for n in range(10):
+    squares.append(n**2)
+squares</code></pre>
+                </div>
+            </div>
+            <p class="basic-text">[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]</p>
+            <p class="basic-text">We can also add an if condition:</p>
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre><code class="language-python">
+short_planets = [planet for planet in planets if len(planet) < 6]</code></pre>
+                </div>
+            </div>
+            <p class="basic-text">['Venus', 'Earth', 'Mars']</p>
+            <p class="basic-text">Here's an example of filtering with an if condition and applying some transformation to the loop variable:</p>
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre><code class="language-python"># str.upper() returns an all-caps version of a string
+loud_short_planets = [planet.upper() + '!' for planet in planets if len(planet) < 6]</code></pre>
+                </div>
+            </div>
+            <p class="basic-text">['VENUS!', 'EARTH!', 'MARS!']</p>
+            <p class="basic-text">People usually write these on a single line, but you might find the structure clearer when it's split up over 3 lines:</p>
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre><code class="language-python">[
+    planet.upper() + '!' 
+    for planet in planets 
+    if len(planet) < 6
+]</code></pre>
+                </div>
+            </div>
+            <p class="basic-text">['VENUS!', 'EARTH!', 'MARS!']</p>
+            <p class="basic-text">The expression on the left doesn't technically have to involve the loop variable (though it'd be pretty unusual for it not to). What do you think the expression below will evaluate to? Press the 'output' button to check.</p>
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre><code class="language-python">[32 for planet in planets]</code></pre>
+                </div>
+            </div>
+            <p class="basic-text">List comprehensions combined with functions like min, max, and sum can lead to impressive one-line solutions for problems that would otherwise require several lines of code.</p>
+            <p class="basic-text">For example, compare the following two cells of code that do the same thing.</p>
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre><code class="language-python">def count_negatives(nums):
+    """Return the number of negative numbers in the given list.
+    
+    >>> count_negatives([5, -1, -2, 0, 3])
+    2
+    """
+    n_negative = 0
+    for num in nums:
+        if num < 0:
+            n_negative = n_negative + 1
+    return n_negative</code></pre>
+                </div>
+            </div>
+            <p class="basic-text">Here's a solution using a list comprehension:</p>
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre><code class="language-python">def count_negatives(nums):
+    return len([num for num in nums if num < 0])</code></pre>
+                </div>
+            </div>
+            <p class="basic-text">Much better, right?</p>
+            <pbasic-text">Well if all we care about is minimizing the length of our code, this third solution is better still!</p>
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre><code class="language-python">def count_negatives(nums):
+    # Reminder: in the "booleans and conditionals" exercises, we learned about a quirk of 
+    # Python where it calculates something like True + True + False + True to be equal to 3.
+    return sum([num < 0 for num in nums])</code></pre>
+                </div>
+            </div>
+            <p class="basic-text">Which of these solutions is the "best" is entirely subjective. Solving a problem with less code is always nice, but it's worth keeping in mind the following lines from The Zen of Python:</p>
+            <p class="basic-text">Readability counts.<br>Explicit is better than implicit.</p>
+            <p class="basic-text">So, use these tools to make compact readable programs. But when you have to choose, favor code that is easy for others to understand.</p>
+
+            <div class="navigation" style="display: flex; justify-content: space-between; font-size: 100px;">
+                <div class="previous" style="cursor: pointer;"><a href="previousChapter.html" style="text-decoration: none;">&leftarrow;</a></div>
+                <div class="next" style="cursor: pointer;"><a href="nextChapter.html" style="text-decoration: none;">&rightarrow;</a></div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="../Script/script.js"></script>
+</body>
+
+</html>
