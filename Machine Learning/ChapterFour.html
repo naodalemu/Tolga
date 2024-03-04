@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <title>Model Validation</title>
+</head>
+
+<body>
+
+    <section class="main-container">
+
+        <div class="aligner">
+
+            
+            <h1 class="chapter-title">Model Validation</h1>
+            <p class="title-description adjust-title-desc">Measure the performance of your model, so you can test and compare alternatives.</p>
+
+            <p class="basic-text">You've built a model. But how good is it?</p>
+            <p class="basic-text">In this lesson, you will learn to use model validation to measure the quality of your model. Measuring model quality is the key to iteratively improving your models.</p>
+
+            <h2 class="sub-header">What is Model Validation</h2>
+            <p class="basic-text">You'll want to evaluate almost every model you ever build. In most (though not all) applications, the relevant measure of model quality is predictive accuracy. In other words, will the model's predictions be close to what actually happens.</p>
+            <p class="basic-text">Many people make a huge mistake when measuring predictive accuracy. They make predictions with their training data and compare those predictions to the target values in the training data. You'll see the problem with this approach and how to solve it in a moment, but let's think about how we'd do this first.</p>
+            <p class="basic-text">You'd first need to summarize the model quality into an understandable way. If you compare predicted and actual home values for 10,000 houses, you'll likely find mix of good and bad predictions. Looking through a list of 10,000 predicted and actual values would be pointless. We need to summarize this into a single metric.</p>
+            <p class="basic-text">There are many metrics for summarizing model quality, but we'll start with one called <b>Mean Absolute Error</b> (also called <b>MAE</b>). Let's break down this metric starting with the last word, error.</p>
+            <p class="basic-text">The prediction error for each house is:</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+error=actual−predicted
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+            </div>
+
+            <p class="basic-text">So, if a house cost $150,000 and you predicted it would cost $100,000 the error is $50,000.</p>
+            <p class="basic-text">With the MAE metric, we take the absolute value of each error. This converts each error to a positive number. We then take the average of those absolute errors. This is our measure of model quality. In plain English, it can be said as</p>
+            <blockquote class="blockquote basic-text">
+                <p>On average, our predictions are off by about X.</p>
+            </blockquote>
+
+            <p class="basic-text">To calculate MAE, we first need a model. That is built in a hidden cell below, which you can review by clicking the <span class="inline-code">code</span> button.</p>
+            
+            <div class="show-and-hide-question">
+                <p class="basic-text show-toggle">Show hidden cell</p>
+                <p class="basic-text hide-toggle hide-question-toggle">Hide cell</p>
+                <hr class="hideline">
+            </div>
+
+            <div class="code-snippet-container adjust-stuff hidden-question">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# Data Loading Code Hidden Here
+import pandas as pd
+
+# Load data
+melbourne_file_path = '../input/melbourne-housing-snapshot/melb_data.csv'
+melbourne_data = pd.read_csv(melbourne_file_path) 
+# Filter rows with missing price values
+filtered_melbourne_data = melbourne_data.dropna(axis=0)
+# Choose target and features
+y = filtered_melbourne_data.Price
+melbourne_features = ['Rooms', 'Bathroom', 'Landsize', 'BuildingArea', 'YearBuilt', 'Lattitude', 'Longtitude']
+X = filtered_melbourne_data[melbourne_features]
+
+from sklearn.tree import DecisionTreeRegressor
+# Define model
+melbourne_model = DecisionTreeRegressor()
+# Fit model
+melbourne_model.fit(X, y)
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+DecisionTreeRegressor()
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text">Once we have a model, here is how we calculate the mean absolute error:</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+from sklearn.metrics import mean_absolute_error
+
+predicted_home_prices = melbourne_model.predict(X)
+mean_absolute_error(y, predicted_home_prices)                            
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+434.71594577146544
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <h2 class="sub-header">The Problem with "In-Sample" Scores</h2>
+            <p class="basic-text">The measure we just computed can be called an "in-sample" score. We used a single "sample" of houses for both building the model and evaluating it. Here's why this is bad.</p>
+            <p class="basic-text">Imagine that, in the large real estate market, door color is unrelated to home price.</p>
+            <p class="basic-text">However, in the sample of data you used to build the model, all homes with green doors were very expensive. The model's job is to find patterns that predict home prices, so it will see this pattern, and it will always predict high prices for homes with green doors.</p>
+            <p class="basic-text">Since this pattern was derived from the training data, the model will appear accurate in the training data.</p>
+            <p class="basic-text">But if this pattern doesn't hold when the model sees new data, the model would be very inaccurate when used in practice.</p>
+            <p class="basic-text">Since models' practical value come from making predictions on new data, we measure performance on data that wasn't used to build the model. The most straightforward way to do this is to exclude some data from the model-building process, and then use those to test the model's accuracy on data it hasn't seen before. This data is called <b>validation data</b>.</p>
+            
+            <h2 class="sub-header">Coding It</h2>
+            <p class="basic-text">The scikit-learn library has a function <span class="inline-code">train_test_split</span> to break up the data into two pieces. We'll use some of that data as training data to fit the model, and we'll use the other data as validation data to calculate <span class="inline-code">mean_absolute_error</span>.</p>
+            <p class="basic-text">Here is the code:</p>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+from sklearn.model_selection import train_test_split
+
+# split data into training and validation data, for both features and target
+# The split is based on a random number generator. Supplying a numeric value to
+# the random_state argument guarantees we get the same split every time we
+# run this script.
+train_X, val_X, train_y, val_y = train_test_split(X, y, random_state = 0)
+# Define model
+melbourne_model = DecisionTreeRegressor()
+# Fit model
+melbourne_model.fit(train_X, train_y)
+
+# get predicted prices on validation data
+val_predictions = melbourne_model.predict(val_X)
+print(mean_absolute_error(val_y, val_predictions))
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+265806.91478373145
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <h2 class="sub-header">Wow!</h2>
+            <p class="basic-text">Your mean absolute error for the in-sample data was about 500 dollars. Out-of-sample it is more than 250,000 dollars.</p>
+            <p class="basic-text">This is the difference between a model that is almost exactly right, and one that is unusable for most practical purposes. As a point of reference, the average home value in the validation data is 1.1 million dollars. So the error in new data is about a quarter of the average home value.</p>
+            <p class="basic-text">There are many ways to improve this model, such as experimenting to find better features or different model types.</p>
+            
+            <div class="navigation" style="display: flex; justify-content: space-between; font-size: 100px;">
+                <div class="previous" style="cursor: pointer;"><a href="ChapterTwo.html"
+                        style="text-decoration: none;">&leftarrow;</a></div>
+                <div class="next" style="cursor: pointer;"><a href="" style="text-decoration: none;">&rightarrow;</a>
+                </div>
+            </div>
+            
+        </div>
+        
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="../Script/script.js"></script>
+</body>
+
+</html>

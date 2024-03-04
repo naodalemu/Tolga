@@ -11,7 +11,7 @@
 }
 
 .aligner {
-    width: 90%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -276,6 +276,13 @@ th {
 .image-container {
     display: flex;
     justify-content: center;
+}
+
+/* Freaking blockquote isn't working so I have to manually code its looks. */
+
+.blockquote {
+    padding-left: 25px;
+    border-left: 2px solid rgb(224, 224, 224);
 }
 
 @media screen and (min-width: 425px) {
