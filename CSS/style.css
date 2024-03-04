@@ -294,6 +294,10 @@ th {
     border-left: 2px solid rgb(224, 224, 224);
 }
 
+.wide-table {
+    max-width: 100% !important;
+}
+
 @media screen and (min-width: 425px) {
     pre code.hljs::-webkit-scrollbar {
         display: none;

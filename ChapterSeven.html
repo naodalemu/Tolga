@@ -24,7 +24,7 @@
         <div class="aligner">
 
             <h1 class="chapter-title">Strings and Dictionaries</h1>
-            <p class="title-description adjust-title-desc">Working with strings and dictionaries, two fundamental Python data types</p>
+            <p class="title-description">Working with strings and dictionaries, two fundamental Python data types</p>
 
             <p class="basic-text">This lesson will cover two essential Python types: <b>strings</b> and <b>dictionaries</b>.</p>
 
@@ -32,386 +32,209 @@
             <p class="basic-text">One place where the Python language really shines is in the manipulation of strings. This section will cover some of Python's built-in string methods and formatting operations.</p>
             <p class="basic-text">Such string manipulation patterns come up often in the context of data science work.</p>
 
-            <div class="code-snippet-container adjust-stuff">
-                <div class="code-snippet">
-                    <pre>
-                        <code class="language-python">
-planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
-for planet in planets:
-    print(planet, end=' ')
-                        </code>
-                    </pre>
-                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
-                </div>
+            <h3 class="small-sub-header sub-header">String syntax</h3>
+            <p class="basic-text">You've already seen plenty of strings in examples during the previous lessons, but just to recap, strings in Python can be defined using either single or double quotations. They are functionally equivalent.</p>
 
-                <p class="output-indicator">Output:</p>
-
-                <div class="code-result">
-                    <pre>
-                        <code class="output language-python">
-Mercury Venus Earth Mars Jupiter Saturn Uranus Neptune
-                        </code>
-                    </pre>
-                </div>
-            </div>
-
-            <p class="basic-text">The for loop specifies</p>
-
-            <ul class="lists">
-                <li class="list-content basic-text">the variable name to use (in this case, <span class="inline-code">planet</span>)</li>
-                <li class="list-content basic-text">the set of values to loop over (in this case, <span class="inline-code">planets</span>)</li>
-            </ul>
-
-            <p class="basic-text">You use the word "<span class="inline-code">in</span>" to link them together.</p>
-            <p class="basic-text">The object to the right of the "<span class="inline-code">in</span>" can be any object that supports iteration. Basically, if it can be thought of as a group of things, you can probably loop over it. In addition to lists, we can iterate over the elements of a tuple:</p>
-            
             <div class="code-snippet-container">
                 <div class="code-snippet">
                     <pre>
                         <code class="language-python">
-                            multiplicands = (2, 2, 2, 3, 3, 5)
-product = 1
-for mult in multiplicands:
-    product = product * mult
-    product
+x = 'Pluto is a planet'
+y = "Pluto is a planet"
+x == y
                         </code>
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
                 
                 <p class="output-indicator">Output:</p>
-                
+    
                 <div class="code-result">
                     <pre>
                         <code class="output language-python">
-360
+True
                         </code>
                     </pre>
                 </div>
             </div>
             
-            <p class="basic-text">You can even loop through each character in a string:</p>
-            
-            <div class="code-snippet-container adjust-stuff">
+            <p class="basic-text">Double quotes are convenient if your string contains a single quote character (e.g. representing an apostrophe).</p>
+            <p class="basic-text">Similarly, it's easy to create a string that contains double-quotes if you wrap it in single quotes:</p>
+
+            <div class="code-snippet-container">
                 <div class="code-snippet">
                     <pre>
                         <code class="language-python">
-s = 'steganograpHy is the practicE of conceaLing a file, message, image, or video within another fiLe, message, image, Or video.'
-msg = ''
-# print all the uppercase letters in s, one at a time
-for char in s:
-    if char.isupper():
-        print(char, end='')      
+print("Pluto's a planet!")
+print('My dog is named "Pluto"')
                         </code>
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
-
+                
                 <p class="output-indicator">Output:</p>
-
+    
                 <div class="code-result">
                     <pre>
                         <code class="output language-python">
-HELLO
+Pluto's a planet!
+My dog is named "Pluto"
                         </code>
                     </pre>
                 </div>
             </div>
             
-            <h2 class="sub-header">range()</h2>
-            <p class="basic-text"><span class="inline-code">range()</span> is a function that returns a sequence of numbers. It turns out to be very useful for writing loops. For example, if we want to repeat some action 5 times:</p>
+            <p class="basic-text">If we try to put a single quote character inside a single-quoted string, Python gets confused:</p>
 
             <div class="code-snippet-container adjust-stuff">
                 <div class="code-snippet">
                     <pre>
                         <code class="language-python">
-for i in range(5):
-print("Doing important work. i =", i)     
+'Pluto's a planet!'
                         </code>
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
-                
+
                 <p class="output-indicator">Output:</p>
 
                 <div class="code-result">
                     <pre>
-                        <code class="output language-python">
-Doing important work. i = 0
-Doing important work. i = 1
-Doing important work. i = 2
-Doing important work. i = 3
-Doing important work. i = 4
+                        <code class="output error-result language-python">
+File "/tmp/ipykernel_19/1561186517.py", line 1
+'Pluto's a planet!'
+        ^
+SyntaxError: invalid syntax
                         </code>
                     </pre>
                 </div>
             </div>
             
-            
-            <h2 class="sub-header">While Loops</h2>
-            <p class="basic-text">The other type of loop in Python is a <span class="inline-code">while</span> loop, which iterates until some condition is met:</p>
-            
-            <div class="code-snippet-container">
-                <div class="code-snippet">
-                    <pre>
-                        <code class="language-python">
-i = 0
-while i < 10:
-    print(i, end=' ')
-    i += 1 # increase the value of i by 1 
-                        </code>
-                    </pre>
-                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
-                </div>
-                
-                <p class="output-indicator">Output:</p>
-
-                <div class="code-result">
-                    <pre>
-                        <code class="output language-python">
-0 1 2 3 4 5 6 7 8 9 
-                        </code>
-                    </pre>
-                </div>
-            </div>
-            
-            <p class="basic-text">The argument of the <span class="inline-code">while</span> loop is evaluated as a boolean statement, and the loop is executed until the statement evaluates to False.</p>
-            
-            <h2 class="sub-header">List Comprehensions</h2>
-            <p class="basic-text">List comprehensions are one of Python's most beloved and unique features. The easiest way to understand them is probably to just look at a few examples:</p>
-            
-            
-            <div class="code-snippet-container">
-                <div class="code-snippet">
-                    <pre>
-                        <code class="language-python">
-squares = [n**2 for n in range(10)]
-squares
-                        </code>
-                    </pre>
-                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
-                </div>
-                
-                <p class="output-indicator">Output:</p>
-    
-                <div class="code-result">
-                    <pre>
-                        <code class="output language-python">
-[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
-                        </code>
-                    </pre>
-                </div>
-            </div>
-            
-            <p class="basic-text">Here's how we would do the same thing without a list comprehension:</p>
-            
-            <div class="code-snippet-container">
-                <div class="code-snippet">
-                    <pre>
-                        <code class="language-python">
-squares = []
-for n in range(10):
-    squares.append(n**2)
-squares
-                        </code>
-                    </pre>
-                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
-                </div>
-                
-                <p class="output-indicator">Output:</p>
-    
-                <div class="code-result">
-                    <pre>
-                        <code class="output language-python">
-[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]    
-                        </code>
-                    </pre>
-                </div>
-            </div>
-            
-            <p class="basic-text">We can also add an if condition:</p>
-            
-            <div class="code-snippet-container">
-                <div class="code-snippet">
-                    <pre>
-                        <code class="language-python">
-short_planets = [planet for planet in planets if len(planet) < 6]
-short_planets
-                        </code>
-                    </pre>
-                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
-                </div>
-                
-                <p class="output-indicator">Output:</p>
-    
-                <div class="code-result">
-                    <pre>
-                        <code class="output language-python">
-['Venus', 'Earth', 'Mars']  
-                        </code>
-                    </pre>
-                </div>
-            </div>
-            
-            <p class="basic-text">(If you're familiar with SQL, you might think of this as being like a "WHERE" clause)</p>
-            
-            <p class="basic-text">Here's an example of filtering with an if condition and applying some transformation to the loop variable:</p>
-            
-            <div class="code-snippet-container">
-                <div class="code-snippet">
-                    <pre>
-                        <code class="language-python">
-# str.upper() returns an all-caps version of a string
-loud_short_planets = [planet.upper() + '!' for planet in planets if len(planet) < 6]
-loud_short_planets
-                        </code>
-                    </pre>
-                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
-                </div>
-                
-                <p class="output-indicator">Output:</p>
-    
-                <div class="code-result">
-                    <pre>
-                        <code class="output language-python">
-['VENUS!', 'EARTH!', 'MARS!']  
-                        </code>
-                    </pre>
-                </div>
-            </div>
-            
-            <p class="basic-text">People usually write these on a single line, but you might find the structure clearer when it's split up over 3 lines:</p>
-            
-            <div class="code-snippet-container">
-                <div class="code-snippet">
-                    <pre>
-                        <code class="language-python">
-[
-    planet.upper() + '!' 
-    for planet in planets 
-    if len(planet) < 6
-]
-                        </code>
-                    </pre>
-                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
-                </div>
-                
-                <p class="output-indicator">Output:</p>
-    
-                <div class="code-result">
-                    <pre>
-                        <code class="output language-python">
-['VENUS!', 'EARTH!', 'MARS!']
-                        </code>
-                    </pre>
-                </div>
-            </div>
-
-            <p class="basic-text">(Continuing the SQL analogy, you could think of these three lines as SELECT, FROM, and WHERE)</p>
-
-            <p class="basic-text">The expression on the left doesn't technically have to involve the loop variable (though it'd be pretty unusual for it not to). What do you think the expression below will evaluate to? Press the 'output' button to check.</p>
+            <p class="basic-text">We can fix this by "escaping" the single quote with a backslash.</p>
 
             <div class="code-snippet-container adjust-stuff">
                 <div class="code-snippet">
                     <pre>
                         <code class="language-python">
-[32 for planet in planets]
+'Pluto\'s a planet!'
                         </code>
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
-            </div>
 
-            <div class="show-and-hide-question">
-                <p class="basic-text show-toggle">Show hidden code</p>
-                <p class="basic-text hide-toggle hide-question-toggle">Hide code</p>
-                <hr class="hideline">
-            </div>
-
-            <div class="code-snippet-container adjust-stuff hidden-question">
                 <p class="output-indicator">Output:</p>
-    
+
                 <div class="code-result">
                     <pre>
                         <code class="output language-python">
-[32, 32, 32, 32, 32, 32, 32, 32]
+"Pluto's a planet!"
                         </code>
                     </pre>
                 </div>
             </div>
+            
+            <p class="basic-text">The table below summarizes some important uses of the backslash character.</p>
 
-            <p class="basic-text below-hidden-text">List comprehensions combined with functions like <span class="inline-code">min</span>, <span class="inline-code">max</span>, and <span class="basic-text">sum</span> can lead to impressive one-line solutions for problems that would otherwise require several lines of code.</p>
-            <p class="basic-text">For example, compare the following two cells of code that do the same thing.</p>
+            <div class="table_component wide-table" role="region" tabindex="0">
+                <table class="wide-table">
+                    <thead>
+                        <tr>
+                            <th><b>What you type...</b></th>
+                            <th>What you get</th>
+                            <th>example</th>
+                            <th>print(example)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>\'</td>
+                            <td>'</td>
+                            <td>'What\'s up?'</td>
+                            <td>What's up?</td>
+                        </tr>
+                        <tr>
+                            <td>\"</td>
+                            <td>"</td>
+                            <td>"That's \"cool\""</td>
+                            <td>That's "cool"</td>
+                        </tr>
+                        <tr>
+                            <td>\\</td>
+                            <td>\</td>
+                            <td>"Look, a mountain: /\\"<br></td>
+                            <td>Look, a mountain: /\<br></td>
+                        </tr>
+                        <tr>
+                            <td>\n</td>
+                            <td></td>
+                            <td>"1\n2 3"</td>
+                            <td>1 <br> 2 3</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <p class="basic-text">The last sequence, <span class="inline-code">\n</span>, represents the newline character. It causes Python to start a new line.</p>
 
-            <div class="code-snippet-container">
+            <div class="code-snippet-container adjust-stuff">
                 <div class="code-snippet">
                     <pre>
                         <code class="language-python">
-def count_negatives(nums):
-    """Return the number of negative numbers in the given list.
-    
-    >>> count_negatives([5, -1, -2, 0, 3])
-    2
-    """
-    n_negative = 0
-    for num in nums:
-        if num < 0:
-            n_negative = n_negative + 1
-    return n_negative   
+hello = "hello\nworld"
+print(hello)
                         </code>
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+hello
+world
+                        </code>
+                    </pre>
+                </div>
             </div>
             
-            <p class="basic-text">Here's a solution using a list comprehension:</p>
+            <p class="basic-text">In addition, Python's triple quote syntax for strings lets us include newlines literally (i.e. by just hitting 'Enter' on our keyboard, rather than using the special '\n' sequence). We've already seen this in the docstrings we use to document our functions, but we can use them anywhere we want to define a string.</p>
 
-            <div class="code-snippet-container">
+            <div class="code-snippet-container adjust-stuff">
                 <div class="code-snippet">
                     <pre>
                         <code class="language-python">
-def count_negatives(nums):
-    return len([num for num in nums if num < 0]) 
+triplequoted_hello = """hello
+world"""
+print(triplequoted_hello)
+triplequoted_hello == hello
                         </code>
                     </pre>
                     <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
-            </div>
-            
-            <p class="basic-text">Much better, right?</p>
-            
-            <p class="basic-text">Well if all we care about is minimizing the length of our code, this third solution is better still!</p>
 
-            <div class="code-snippet-container">
-                <div class="code-snippet">
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
                     <pre>
-                        <code class="language-python">
-def count_negatives(nums):
-    # Reminder: in the "booleans and conditionals" exercises, we learned about a quirk of 
-    # Python where it calculates something like True + True + False + True to be equal to 3.
-    return sum([num < 0 for num in nums])
+                        <code class="output language-python">
+hello
+world
+
+True
                         </code>
                     </pre>
-                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
                 </div>
             </div>
             
-            <p class="basic-text">Which of these solutions is the "best" is entirely subjective. Solving a problem with less code is always nice, but it's worth keeping in mind the following lines from The Zen of Python:</p>
 
-            <blockquote class="blockquote basic-text">
-                <p>
-                    Readability counts. <br>
-                    Explicit is better than implicit.
-                </p>
-            </blockquote>
-
-            <p class="basic-text">So, use these tools to make compact readable programs. But when you have to choose, favor code that is easy for others to understand.</p>
 
             <div class="navigation" style="display: flex; justify-content: space-between; font-size: 100px;">
                 <div class="previous" style="cursor: pointer;"><a href="ChapterBeforeLoops.html" style="text-decoration: none;">&leftarrow;</a></div>
                 <div class="next" style="cursor: pointer;"><a href="ChapterAfterLoops.html" style="text-decoration: none;">&rightarrow;</a></div>
             </div>
-
+            
         </div>
 
     </section>
