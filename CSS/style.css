@@ -276,6 +276,15 @@ th {
 .image-container {
     display: flex;
     justify-content: center;
+    width: 100%;
+}
+
+.image {
+    width: 100%;
+}
+
+.below-hidden-text {
+    padding-top: 20px;
 }
 
 /* Freaking blockquote isn't working so I have to manually code its looks. */
