@@ -530,9 +530,604 @@ year, month, day = datestr.split('-')
                 </div>
             </div>
 
+            <p class="basic-text"><span class="inline-code">str.join()</span> takes us in the other direction, sewing a list of strings up into one long string, using the string it was called on as a separator.</p>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+'/'.join([month, day, year])
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+'01/31/1956'
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# Yes, we can put unicode characters right in our string literals :)
+' 👏 '.join([word.upper() for word in words])
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+'PLUTO 👏 IS 👏 A 👏 PLANET!'
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="special-text"><b>Building strings with</b> .format()</p>
+            <p class="basic-text">Python lets us concatenate strings with the <span class="inline-code">+</span> operator.</p>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+planet + ', we miss you.'
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+'Pluto, we miss you.'
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text">If we want to throw in any non-string objects, we have to be careful to call <span class="inline-code">str()</span> on them first</p>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+position = 9
+planet + ", you'll always be the " + position + "th planet to me."                            
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output error-result language-python">
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+/tmp/ipykernel_19/1802981568.py in <module>
+        1 position = 9
+----> 2 planet + ", you'll always be the " + position + "th planet to me."
+
+TypeError: can only concatenate str (not "int") to str
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+planet + ", you'll always be the " + str(position) + "th planet to me."                         
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+"Pluto, you'll always be the 9th planet to me." 
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text">This is getting hard to read and annoying to type. <span class="inline-code">str.format()</span> to the rescue.</p>
+            
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+"{}, you'll always be the {}th planet to me.".format(planet, position)                     
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+"Pluto, you'll always be the 9th planet to me."
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text">So much cleaner! We call <span class="inline-code">.format()</span> on a "format string", where the Python values we want to insert are represented with <span class="inline-code">{}</span> placeholders.</p>
+            <p class="basic-text">Notice how we didn't even have to call <span class="inline-code">str()</span> to convert <span class="inline-code">position</span> from an int. <span class="inline-code">format()</span> takes care of that for us.</p>
+            <p class="basic-text">If that was all that <span class="inline-code">format()</span> did, it would still be incredibly useful. But as it turns out, it can do a <i>lot</i> more. Here's just a taste:</p>
+            
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+pluto_mass = 1.303 * 10**22
+earth_mass = 5.9722 * 10**24
+population = 52910390
+#         2 decimal points   3 decimal points, format as percent     separate with commas
+"{} weighs about {:.2} kilograms ({:.3%} of Earth's mass). It is home to {:,} Plutonians.".format(
+    planet, pluto_mass, pluto_mass / earth_mass, population,
+)                
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+"Pluto weighs about 1.3e+22 kilograms (0.218% of Earth's mass). It is home to 52,910,390 Plutonians."
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# Referring to format() arguments by index, starting from 0
+s = """Pluto's a {0}.
+No, it's a {1}.
+{0}!
+{1}!""".format('planet', 'dwarf planet')
+print(s)
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+Pluto's a planet.
+No, it's a dwarf planet.
+planet!
+dwarf planet!
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text">You could probably write a short book just on <span class="inline-code">str.format</span>, so I'll stop here, and point you to <a href="http://pyformat.info/" target="_blank" rel="noopener noreferrer">pyformat.info</a> and the <a href="https://docs.python.org/3/library/string.html#formatstrings" target="_blank" rel="noopener noreferrer">official docs</a> for further reading.</p>
+            
+            <h2 class="sub-header">Dictionaries</h2>
+            <p class="basic-text">Dictionaries are a built-in Python data structure for mapping keys to values.</p>
+            
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+numbers = {'one':1, 'two':2, 'three':3}
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+            </div>
+            
+            <p class="basic-text">In this case <span class="inline-code">'one'</span>, <span class="inline-code">'two'</span>, and <span class="inline-code">'three'</span> are the <b>keys</b>, and 1, 2 and 3 are their corresponding values.</p>
+            <p class="basic-text">Values are accessed via square bracket syntax similar to indexing into lists and strings.</p>
+            
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+numbers['one']  
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+1
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text">We can use the same syntax to add another key, value pair</p>
+            
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+numbers['eleven'] = 11
+numbers
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+{'one': 1, 'two': 2, 'three': 3, 'eleven': 11}
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text">Or to change the value associated with an existing key</p>
+            
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+numbers['one'] = 'Pluto'
+numbers
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+{'one': 'Pluto', 'two': 2, 'three': 3, 'eleven': 11}
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text">Python has <i>dictionary comprehensions</i> with a syntax similar to the list comprehensions we saw in the previous tutorial.</p>
+            
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
+planet_to_initial = {planet: planet[0] for planet in planets}
+planet_to_initial
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+    
+                <p class="output-indicator">Output:</p>
+    
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+{'Mercury': 'M',
+ 'Venus': 'V',
+ 'Earth': 'E',
+ 'Mars': 'M',
+ 'Jupiter': 'J',
+ 'Saturn': 'S',
+ 'Uranus': 'U',
+ 'Neptune': 'N'}
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text">The <span class="inline-code">in</span> operator tells us whether something is a key in the dictionary</p>
+            
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+'Saturn' in planet_to_initial
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+    
+                <p class="output-indicator">Output:</p>
+    
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+True
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+'Betelgeuse' in planet_to_initial
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+    
+                <p class="output-indicator">Output:</p>
+    
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+False
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text">A for loop over a dictionary will loop over its keys</p>
+            
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+for k in numbers:
+    print("{} = {}".format(k, numbers[k]))
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+    
+                <p class="output-indicator">Output:</p>
+    
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+one = Pluto
+two = 2
+three = 3
+eleven = 11
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text">We can access a collection of all the keys or all the values with <span class="inline-code">dict.keys()</span> and <span class="inline-code">dict.values()</span>, respectively.</p>
+            
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# Get all the initials, sort them alphabetically, and put them in a space-separated string.
+' '.join(sorted(planet_to_initial.values()))
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+    
+                <p class="output-indicator">Output:</p>
+    
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+'E J M M N S U V'
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text">The very useful <span class="inline-code">dict.items()</span> method lets us iterate over the keys and values of a dictionary simultaneously. (In Python jargon, an <b>item</b> refers to a key, value pair)</p>
+            
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+for planet, initial in planet_to_initial.items():
+    print("{} begins with \"{}\"".format(planet.rjust(10), initial))
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+    
+                <p class="output-indicator">Output:</p>
+    
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+   Mercury begins with "M"
+     Venus begins with "V"
+     Earth begins with "E"
+      Mars begins with "M"
+   Jupiter begins with "J"
+    Saturn begins with "S"
+    Uranus begins with "U"
+   Neptune begins with "N"
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text">To read a full inventory of dictionaries' methods, click the "output" button below to read the full help page, or check out the <a href="https://docs.python.org/3/library/stdtypes.html#dict" target="_blank" rel="noopener noreferrer">official online documentation</a>.</p>
+            
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+help(dict)
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+            </div>
+
+            <div class="show-and-hide-question">
+                <p class="basic-text show-toggle">Show hidden output</p>
+                <p class="basic-text hide-toggle hide-question-toggle">Hide output</p>
+                <hr class="hideline">
+            </div>
+            
+            <div class="code-snippet-container hidden-question">
+    
+                <p class="output-indicator">Output:</p>
+    
+                <div class="code-result">
+                    <pre class="pre-padding">
+Help on class dict in module builtins:
+
+class dict(object)
+ |  dict() -> new empty dictionary
+ |  dict(mapping) -> new dictionary initialized from a mapping object's
+ |      (key, value) pairs
+ |  dict(iterable) -> new dictionary initialized as if via:
+ |      d = {}
+ |      for k, v in iterable:
+ |          d[k] = v
+ |  dict(**kwargs) -> new dictionary initialized with the name=value pairs
+ |      in the keyword argument list.  For example:  dict(one=1, two=2)
+ |  
+ |  Methods defined here:
+ |  
+ |  __contains__(self, key, /)
+ |      True if the dictionary has the specified key, else False.
+ |  
+ |  __delitem__(self, key, /)
+ |      Delete self[key].
+ |  
+ |  __eq__(self, value, /)
+ |      Return self==value.
+ |  
+ |  __ge__(self, value, /)
+ |      Return self>=value.
+ |  
+ |  __getattribute__(self, name, /)
+ |      Return getattr(self, name).
+ |  
+ |  __getitem__(...)
+ |      x.__getitem__(y) <==> x[y]
+ |  
+ |  __gt__(self, value, /)
+ |      Return self>value.
+ |  
+ |  __init__(self, /, *args, **kwargs)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |  
+ |  __iter__(self, /)
+ |      Implement iter(self).
+ |  
+ |  __le__(self, value, /)
+ |      Return self<=value.
+ |  
+ |  __len__(self, /)
+ |      Return len(self).
+ |  
+ |  __lt__(self, value, /)
+ |      Return self<value.
+ |  
+ |  __ne__(self, value, /)
+ |      Return self!=value.
+ |  
+ |  __repr__(self, /)
+ |      Return repr(self).
+ |  
+ |  __setitem__(self, key, value, /)
+ |      Set self[key] to value.
+ |  
+ |  __sizeof__(...)
+ |      D.__sizeof__() -> size of D in memory, in bytes
+ |  
+ |  clear(...)
+ |      D.clear() -> None.  Remove all items from D.
+ |  
+ |  copy(...)
+ |      D.copy() -> a shallow copy of D
+ |  
+ |  get(self, key, default=None, /)
+ |      Return the value for key if key is in the dictionary, else default.
+ |  
+ |  items(...)
+ |      D.items() -> a set-like object providing a view on D's items
+ |  
+ |  keys(...)
+ |      D.keys() -> a set-like object providing a view on D's keys
+ |  
+ |  pop(...)
+ |      D.pop(k[,d]) -> v, remove specified key and return the corresponding value.
+ |      If key is not found, d is returned if given, otherwise KeyError is raised
+ |  
+ |  popitem(...)
+ |      D.popitem() -> (k, v), remove and return some (key, value) pair as a
+ |      2-tuple; but raise KeyError if D is empty.
+ |  
+ |  setdefault(self, key, default=None, /)
+ |      Insert key with a value of default if key is not in the dictionary.
+ |      
+ |      Return the value for key if key is in the dictionary, else default.
+ |  
+ |  update(...)
+ |      D.update([E, ]**F) -> None.  Update D from dict/iterable E and F.
+ |      If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k]
+ |      If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v
+ |      In either case, this is followed by: for k in F:  D[k] = F[k]
+ |  
+ |  values(...)
+ |      D.values() -> an object providing a view on D's values
+ |  
+ |  ----------------------------------------------------------------------
+ |  Class methods defined here:
+ |  
+ |  fromkeys(iterable, value=None, /) from builtins.type
+ |      Create a new dictionary with keys from iterable and values set to value.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Static methods defined here:
+ |  
+ |  __new__(*args, **kwargs) from builtins.type
+ |      Create and return a new object.  See help(type) for accurate signature.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |  
+ |  __hash__ = None
+                    </pre>
+                </div>
+            </div>
+            
+            
             <div class="navigation" style="display: flex; justify-content: space-between; font-size: 100px;">
-                <div class="previous" style="cursor: pointer;"><a href="ChapterBeforeLoops.html" style="text-decoration: none;">&leftarrow;</a></div>
-                <div class="next" style="cursor: pointer;"><a href="ChapterAfterLoops.html" style="text-decoration: none;">&rightarrow;</a></div>
+                <div class="previous" style="cursor: pointer;"><a href="ChapterSix.html" style="text-decoration: none;">&leftarrow;</a></div>
+                <div class="next" style="cursor: pointer;"><a href="" style="text-decoration: none;">&rightarrow;</a></div>
             </div>
             
         </div>
