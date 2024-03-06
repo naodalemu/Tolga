@@ -1,17 +1,21 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const showToggle = document.querySelector('.show-toggle');
-    const hideToggle = document.querySelector('.hide-toggle');
-    const codeSnippetContainer = document.querySelector('.hidden-question');
+    const showToggles = document.querySelectorAll('.show-toggle');
+    const hideToggles = document.querySelectorAll('.hide-toggle');
+    const codeSnippetContainers = document.querySelectorAll('.hidden-question');
 
-    showToggle.addEventListener('click', function () {
-        codeSnippetContainer.style.display = 'block';
-        showToggle.style.display = 'none';
-        hideToggle.style.display = 'block';
+    showToggles.forEach((showToggle, index) => {
+        showToggle.addEventListener('click', function () {
+            codeSnippetContainers[index].style.display = 'block';
+            showToggles[index].style.display = 'none';
+            hideToggles[index].style.display = 'block';
+        });
     });
 
-    hideToggle.addEventListener('click', function () {
-        codeSnippetContainer.style.display = 'none';
-        showToggle.style.display = 'block';
-        hideToggle.style.display = 'none';
+    hideToggles.forEach((hideToggle, index) => {
+        hideToggle.addEventListener('click', function () {
+            codeSnippetContainers[index].style.display = 'none';
+            showToggles[index].style.display = 'block';
+            hideToggles[index].style.display = 'none';
+        });
     });
 });
