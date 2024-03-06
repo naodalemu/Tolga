@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <title>Working with External Libraries</title>
+</head>
+
+<body>
+
+    <section class="main-container">
+
+        <div class="aligner">
+
+            <h1 class="chapter-title">Working with External Libraries</h1>
+            <p class="title-description">Imports, operator overloading, and survival tips for venturing into the world of external libraries</p>
+
+            <p class="basic-text">In this tutorial, you will learn about <b>imports</b> in Python, get some tips for working with unfamiliar libraries (and the objects they return), and dig into <b>operator overloading</b>.</p>
+
+            <!-- Introduction or any new section -->
+            <h2 class="sub-header">Imports</h2>
+            <p class="basic-text">So far we've talked about types and functions which are built-in to the language.</p>
+            <p class="basic-text">But one of the best things about Python (especially if you're a data scientist) is the vast number of high-quality custom libraries that have been written for it.</p>
+            <p class="basic-text">Some of these libraries are in the "standard library", meaning you can find them anywhere you run Python. Other libraries can be easily added, even if they aren't always shipped with Python.</p>
+            <p class="basic-text">Either way, we'll access this code with <b>imports</b>.</p>
+            <p class="basic-text">We'll start our example by importing <span class="inline-code">math</span> from the standard library.</p>
+
+            <!-- Example code snippet -->
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+import math
+
+print("It's math! It has type {}".format(type(math)))
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &gt;&gt;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+    
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+It's math! It has type &lt;class 'module'&gt;
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text"><span class="inline-code">math</span> is a module. A module is just a collection of variables (a <i>namespace</i>, if you like) defined by someone else. We can see all the names in <span class="inline-code">math</span> using the built-in function <span class="inline-code">dir()</span>.</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+print(dir(math))
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &gt;&gt;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+    
+                <div class="code-result pre-padding">
+                    <br>
+['__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'acos', 'acosh', 'asin', 'asinh', 'atan', 'atan2', 'atanh', 'ceil', 'copysign', 'cos', 'cosh', 'degrees', 'e', 'erf', 'erfc', 'exp', 'expm1', 'fabs', 'factorial', 'floor', 'fmod', 'frexp', 'fsum', 'gamma', 'gcd', 'hypot', 'inf', 'isclose', 'isfinite', 'isinf', 'isnan', 'ldexp', 'lgamma', 'log', 'log10', 'log1p', 'log2', 'modf', 'nan', 'pi', 'pow', 'radians', 'remainder', 'sin', 'sinh', 'sqrt', 'tan', 'tanh', 'tau', 'trunc']
+                </div>
+            </div>
+
+            <p class="basic-text">We can access these variables using dot syntax. Some of them refer to simple values, like <span class="inline-code">math.pi</span>:</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+print("pi to 4 significant digits = {:.4}".format(math.pi))
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &gt;&gt;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+    
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+pi to 4 significant digits = 3.142  
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text">But most of what we'll find in the module are functions, like <span class="inline-code">math.log</span>:</p>
+            
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+math.log(32, 2)
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &gt;&gt;</div>
+                </div>
+                
+                <p class="output-indicator">Output:</p>
+                
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+5.0
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text">Of course, if we don't know what <span class="inline-code">math.log</span> does, we can call <span class="inline-code">help()</span> on it:</p>
+            
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+help(math.log)
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &gt;&gt;</div>
+                </div>
+                
+                <p class="output-indicator">Output:</p>
+                
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+Help on built-in function log in module math:
+
+log(...)
+    log(x, [base=math.e])
+    Return the logarithm of x to the given base.
+    
+    If the base not specified, returns the natural logarithm (base e) of x.
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p class="basic-text">We can also call <span class="inline-code">help()</span> on the module itself. This will give us the combined documentation for <i>all</i> the functions and values in the module (as well as a high-level description of the module). Click the "output" button to see the whole <span class="inline-code">math</span> help page.</p>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+help(math)
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+            </div>
+
+            <div class="show-and-hide-question">
+                <p class="basic-text show-toggle">Show hidden output</p>
+                <p class="basic-text hide-toggle hide-question-toggle">Hide output</p>
+                <hr class="hideline">
+            </div>
+            
+            <div class="code-snippet-container hidden-question">
+    
+                <p class="output-indicator">Output:</p>
+    
+                <div class="code-result">
+                    <pre class="pre-padding">
+Help on module math:
+
+NAME
+    math
+
+MODULE REFERENCE
+    https://docs.python.org/3.7/library/math
+    
+    The following documentation is automatically generated from the Python
+    source files.  It may be incomplete, incorrect or include features that
+    are considered implementation detail and may vary between Python
+    implementations.  When in doubt, consult the module reference at the
+    location listed above.
+
+DESCRIPTION
+    This module provides access to the mathematical functions
+    defined by the C standard.
+
+FUNCTIONS
+    acos(x, /)
+        Return the arc cosine (measured in radians) of x.
+    
+    acosh(x, /)
+        Return the inverse hyperbolic cosine of x.
+    
+    asin(x, /)
+        Return the arc sine (measured in radians) of x.
+    
+    asinh(x, /)
+        Return the inverse hyperbolic sine of x.
+    
+    atan(x, /)
+        Return the arc tangent (measured in radians) of x.
+    
+    atan2(y, x, /)
+        Return the arc tangent (measured in radians) of y/x.
+        
+        Unlike atan(y/x), the signs of both x and y are considered.
+    
+    atanh(x, /)
+        Return the inverse hyperbolic tangent of x.
+    
+    ceil(x, /)
+        Return the ceiling of x as an Integral.
+        
+        This is the smallest integer >= x.
+    
+    copysign(x, y, /)
+        Return a float with the magnitude (absolute value) of x but the sign of y.
+        
+        On platforms that support signed zeros, copysign(1.0, -0.0)
+        returns -1.0.
+    
+    cos(x, /)
+        Return the cosine of x (measured in radians).
+    
+    cosh(x, /)
+        Return the hyperbolic cosine of x.
+    
+    degrees(x, /)
+        Convert angle x from radians to degrees.
+    
+    erf(x, /)
+        Error function at x.
+    
+    erfc(x, /)
+        Complementary error function at x.
+    
+    exp(x, /)
+        Return e raised to the power of x.
+    
+    expm1(x, /)
+        Return exp(x)-1.
+        
+        This function avoids the loss of precision involved in the direct 
+        evaluation of exp(x)-1 for small x.
+    
+    fabs(x, /)
+        Return the absolute value of the float x.
+    
+    factorial(x, /)
+        Find x!.
+        
+        Raise a ValueError if x is negative or non-integral.
+    
+    floor(x, /)
+        Return the floor of x as an Integral.
+        
+        This is the largest integer <= x.
+    
+    fmod(x, y, /)
+        Return fmod(x, y), according to platform C.
+        
+        x % y may differ.
+    
+    frexp(x, /)
+        Return the mantissa and exponent of x, as pair (m, e).
+        
+        m is a float and e is an int, such that x = m * 2.**e.
+        If x is 0, m and e are both 0.  Else 0.5 <= abs(m) < 1.0.
+    
+    fsum(seq, /)
+        Return an accurate floating point sum of values in the iterable seq.
+        
+        Assumes IEEE-754 floating point arithmetic.
+    
+    gamma(x, /)
+        Gamma function at x.
+    
+    gcd(x, y, /)
+        greatest common divisor of x and y
+    
+    hypot(x, y, /)
+        Return the Euclidean distance, sqrt(x*x + y*y).
+    
+    isclose(a, b, *, rel_tol=1e-09, abs_tol=0.0)
+        Determine whether two floating point numbers are close in value.
+        
+          rel_tol
+            maximum difference for being considered "close", relative to the
+            magnitude of the input values
+          abs_tol
+            maximum difference for being considered "close", regardless of the
+            magnitude of the input values
+        
+        Return True if a is close in value to b, and False otherwise.
+        
+        For the values to be considered close, the difference between them
+        must be smaller than at least one of the tolerances.
+        
+        -inf, inf and NaN behave similarly to the IEEE 754 Standard.  That
+        is, NaN is not close to anything, even itself.  inf and -inf are
+        only close to themselves.
+    
+    isfinite(x, /)
+        Return True if x is neither an infinity nor a NaN, and False otherwise.
+    
+    isinf(x, /)
+        Return True if x is a positive or negative infinity, and False otherwise.
+    
+    isnan(x, /)
+        Return True if x is a NaN (not a number), and False otherwise.
+    
+    ldexp(x, i, /)
+        Return x * (2**i).
+        
+        This is essentially the inverse of frexp().
+    
+    lgamma(x, /)
+        Natural logarithm of absolute value of Gamma function at x.
+    
+    log(...)
+        log(x, [base=math.e])
+        Return the logarithm of x to the given base.
+        
+        If the base not specified, returns the natural logarithm (base e) of x.
+    
+    log10(x, /)
+        Return the base 10 logarithm of x.
+    
+    log1p(x, /)
+        Return the natural logarithm of 1+x (base e).
+        
+        The result is computed in a way which is accurate for x near zero.
+    
+    log2(x, /)
+        Return the base 2 logarithm of x.
+    
+    modf(x, /)
+        Return the fractional and integer parts of x.
+        
+        Both results carry the sign of x and are floats.
+    
+    pow(x, y, /)
+        Return x**y (x to the power of y).
+    
+    radians(x, /)
+        Convert angle x from degrees to radians.
+    
+    remainder(x, y, /)
+        Difference between x and the closest integer multiple of y.
+        
+        Return x - n*y where n*y is the closest integer multiple of y.
+        In the case where x is exactly halfway between two multiples of
+        y, the nearest even value of n is used. The result is always exact.
+    
+    sin(x, /)
+        Return the sine of x (measured in radians).
+    
+    sinh(x, /)
+        Return the hyperbolic sine of x.
+    
+    sqrt(x, /)
+        Return the square root of x.
+    
+    tan(x, /)
+        Return the tangent of x (measured in radians).
+    
+    tanh(x, /)
+        Return the hyperbolic tangent of x.
+    
+    trunc(x, /)
+        Truncates the Real x to the nearest Integral toward 0.
+        
+        Uses the __trunc__ magic method.
+
+DATA
+    e = 2.718281828459045
+    inf = inf
+    nan = nan
+    pi = 3.141592653589793
+    tau = 6.283185307179586
+
+FILE
+    /opt/conda/lib/python3.7/lib-dynload/math.cpython-37m-x86_64-linux-gnu.so
+                    </pre>
+                </div>
+            </div>
+
+            <div class="navigation" style="display: flex; justify-content: space-between; font-size: 100px;">
+                <div class="previous" style="cursor: pointer;"><a href="PreviousChapter.html" style="text-decoration: none;">&leftarrow;</a></div>
+                <div class="next" style="cursor: pointer;"><a href="NextChapter.html" style="text-decoration: none;">&rightarrow;</a></div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="Script/script.js"></script> <!-- Make sure the path matches your project structure -->
+</body>
+
+</html>
