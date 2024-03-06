@@ -228,7 +228,307 @@ True
                 </div>
             </div>
             
+            <p class="basic-text">The <span class="inline-code">print()</span> function automatically adds a newline character unless we specify a value for the keyword argument <span class="inline-code">end</span> other than the default value of <span class="inline-code">'\n'</span>:</p>
 
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+print("hello")
+print("world")
+print("hello", end='')
+print("pluto", end='')
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+hello
+world
+hellopluto
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <h3 class="small-sub-header sub-header">Strings are sequences</h3>
+            <p class="basic-text">Strings can be thought of as sequences of characters. Almost everything we've seen that we can do to a list, we can also do to a string.</p>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# Indexing
+planet = 'Pluto'
+planet[0]
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+'P'
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# Slicing
+planet[-3:]
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+'uto'
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# How long is this string?
+len(planet)
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+5
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# Yes, we can even loop over them
+[char+'! ' for char in planet]
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+['P! ', 'l! ', 'u! ', 't! ', 'o! ']
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text">But a major way in which they differ from lists is that they are <i>immutable</i>. We can't modify them.</p>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+planet[0] = 'B'
+# planet.append doesn't work either
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output error-result language-python">
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+/tmp/ipykernel_19/2683731249.py in <module>
+----> 1 planet[0] = 'B'
+2 # planet.append doesn't work either
+
+TypeError: 'str' object does not support item assignment
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <h3 class="small-sub-header sub-header">String methods</h3>
+            <p class="basic-text">Like <span class="inline-code">list</span>, the type <span class="inline-code">str</span> has lots of very useful methods. I'll show just a few examples here.</p>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# ALL CAPS
+claim = "Pluto is a planet!"
+claim.upper()
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+'PLUTO IS A PLANET!'
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# all lowercase
+claim.lower()
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+'pluto is a planet!'
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# Searching for the first index of a substring
+claim.index('plan')
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+11
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+claim.startswith(planet)    
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+True
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# false because of missing exclamation mark
+claim.endswith('planet')
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+False
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="special-text"><b>Going between strings and lists</b>: .split() <b>and</b> .join()</p>
+            <p class="basic-text"><span class="inline-code">str.split()</span> turns a string into a list of smaller strings, breaking on whitespace by default. This is super useful for taking you from one big string to a list of words.</p>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+words = claim.split()
+words
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+['Pluto', 'is', 'a', 'planet!']
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text">Occasionally you'll want to split on something other than whitespace:</p>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+datestr = '1956-01-31'
+year, month, day = datestr.split('-')
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+            </div>
 
             <div class="navigation" style="display: flex; justify-content: space-between; font-size: 100px;">
                 <div class="previous" style="cursor: pointer;"><a href="ChapterBeforeLoops.html" style="text-decoration: none;">&leftarrow;</a></div>

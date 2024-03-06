@@ -82,6 +82,12 @@
     line-height: 1.7;
 }
 
+.special-text {
+    font-size: 16px;
+    margin-bottom: 12px;
+    line-height: 1.7;
+}
+
 .chapter-title {
     font-size: 34px;
     margin-bottom: 16px;
