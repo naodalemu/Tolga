@@ -75,7 +75,6 @@ print(dir(math))
                 <p class="output-indicator">Output:</p>
     
                 <div class="code-result pre-padding">
-                    <br>
 ['__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'acos', 'acosh', 'asin', 'asinh', 'atan', 'atan2', 'atanh', 'ceil', 'copysign', 'cos', 'cosh', 'degrees', 'e', 'erf', 'erfc', 'exp', 'expm1', 'fabs', 'factorial', 'floor', 'fmod', 'frexp', 'fsum', 'gamma', 'gcd', 'hypot', 'inf', 'isclose', 'isfinite', 'isinf', 'isnan', 'ldexp', 'lgamma', 'log', 'log10', 'log1p', 'log2', 'modf', 'nan', 'pi', 'pow', 'radians', 'remainder', 'sin', 'sinh', 'sqrt', 'tan', 'tanh', 'tau', 'trunc']
                 </div>
             </div>
@@ -399,6 +398,1452 @@ FILE
                 </div>
             </div>
 
+            <p class="special-text below-hidden-text"><b>Other import syntax</b></p>
+            <p class="basic-text">If we know we'll be using functions in <span class="inline-code">math</span> frequently we can import it under a shorter alias to save some typing (though in this case "math" is already pretty short).</p>
+            
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+import math as mt
+mt.pi
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &gt;&gt;</div>
+                </div>
+                
+                <p class="output-indicator">Output:</p>
+                
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+3.141592653589793
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <blockquote class="blockquote basic-text">You may have seen code that does this with certain popular libraries like Pandas, Numpy, Tensorflow, or Matplotlib. For example, it's a common convention to <span class="inline-code">import numpy as np</span> and <span class="inline-code">import pandas as pd</span>.</blockquote>
+            <p class="basic-text">The <span class="inline-code">as</span> simply renames the imported module. It's equivalent to doing something like:</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+import math
+mt = math
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &gt;&gt;</div>
+                </div>
+            </div>
+
+            <p class="basic-text">Wouldn't it be great if we could refer to all the variables in the <span class="inline-code">math</span> module by themselves? i.e. if we could just refer to <span class="inline-code">pi</span> instead of <span class="inline-code">math.pi</span> or <span class="inline-code">mt.pi</span>? Good news: we can do that.</p>
+            
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+from math import *
+print(pi, log(32, 2))
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &gt;&gt;</div>
+                </div>
+                
+                <p class="output-indicator">Output:</p>
+                
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+3.141592653589793 5.0
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text"><span class="inline-code">import *</span> makes all the module's variables directly accessible to you (without any dotted prefix).</p>
+            <p class="basic-text">Bad news: some purists might grumble at you for doing this.</p>
+            <p class="basic-text">Worse: they kind of have a point.</p>
+            
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+from math import *
+from numpy import *
+print(pi, log(32, 2))
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &gt;&gt;</div>
+                </div>
+                
+                <p class="output-indicator">Output:</p>
+                
+                <div class="code-result">
+                    <pre>
+                        <code class="output error-result language-python">
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+/tmp/ipykernel_19/3018510453.py in <module>
+      1 from math import *
+      2 from numpy import *
+----> 3 print(pi, log(32, 2))
+
+TypeError: return arrays must be of ArrayType
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text">What has happened? It worked before!</p>
+            <p class="basic-text">These kinds of "star imports" can occasionally lead to weird, difficult-to-debug situations.</p>
+            <p class="basic-text">The problem in this case is that the <span class="inline-code">math</span> and <span class="inline-code">numpy</span> modules both have functions called <span class="inline-code">log</span>, but they have different semantics. Because we import from <span class="inline-code">numpy</span> second, its <span class="inline-code">log</span> overwrites (or "shadows") the <span class="inline-code">log</span> variable we imported from <span class="inline-code">math</span>.</p>
+            <p class="basic-text">A good compromise is to import only the specific things we'll need from each module:</p>
+            
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+from math import log, pi
+from numpy import asarray
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &gt;&gt;</div>
+                </div>
+            </div>
+            
+            <p class="special-text"><b>Submodules</b></p>
+            <p class="basic-text">We've seen that modules contain variables which can refer to functions or values. Something to be aware of is that they can also have variables referring to <i>other modules</i>.</p>
+            
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+import numpy
+print("numpy.random is a", type(numpy.random))
+print("it contains names such as...",
+      dir(numpy.random)[-15:]
+     )
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &gt;&gt;</div>
+                </div>
+                
+                <p class="output-indicator">Output:</p>
+                
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+numpy.random is a &lt;class 'module'&gt;
+it contains names such as... 
+['seed', 'set_state', 'shuffle', 'standard_cauchy', 'standard_exponential', 'standard_gamma', 'standard_normal', 'standard_t', 'test', 'triangular', 'uniform', 'vonmises', 'wald', 'weibull', 'zipf']
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="basic-text">So if we import <span class="inline-code">numpy</span> as above, then calling a function in the <span class="inline-code">random</span> "submodule" will require two dots.</p>
+            
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# Roll 10 dice
+rolls = numpy.random.randint(low=1, high=6, size=10)
+rolls
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &gt;&gt;</div>
+                </div>
+                
+                <p class="output-indicator">Output:</p>
+                
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+array([3, 4, 3, 4, 5, 5, 2, 1, 3, 3])
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <h3 class="small-sub-header sub-header">Oh the places you'll go, oh the objects you'll see</h3>
+            <p class="basic-text">So after 6 lessons, you're a pro with ints, floats, bools, lists, strings, and dicts (right?).</p>
+            <p class="basic-text">Even if that were true, it doesn't end there. As you work with various libraries for specialized tasks, you'll find that they define their own types which you'll have to learn to work with. For example, if you work with the graphing library <span class="inline-code">matplotlib</span>, you'll be coming into contact with objects it defines which represent Subplots, Figures, TickMarks, and Annotations. <span class="inline-code">pandas</span> functions will give you DataFrames and Series.</p>
+            <p class="basic-text">In this section, I want to share with you a quick survival guide for working with strange types.</p>
+
+            <h3 class="small-sub-header sub-header">Three tools for understanding strange objects</h3>
+            <p class="basic-text">In the cell above, we saw that calling a <span class="inline-code">numpy</span> function gave us an "array". We've never seen anything like this before (not in this course anyways). But don't panic: we have three familiar builtin functions to help us here.</p>
+            
+            <p class="special-text"><b>1: <span class="inline-code">type()</span></b>(what is this thing?)</p>
+            
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+type(rolls)
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &gt;&gt;</div>
+                </div>
+                
+                <p class="output-indicator">Output:</p>
+                
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+numpy.ndarray
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="special-text"><b>2: <span class="inline-code">dir()</span></b>(what can I do with it?)</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+print(dir(rolls))
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &gt;&gt;</div>
+                </div>
+                
+                <p class="output-indicator">Output:</p>
+
+                <div class="code-result pre-padding">
+['T', '__abs__', '__add__', '__and__', '__array__', '__array_finalize__', '__array_function__', '__array_interface__', '__array_prepare__', '__array_priority__', '__array_struct__', '__array_ufunc__', '__array_wrap__', '__bool__', '__class__', '__complex__', '__contains__', '__copy__', '__deepcopy__', '__delattr__', '__delitem__', '__dir__', '__divmod__', '__doc__', '__eq__', '__float__', '__floordiv__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__gt__', '__hash__', '__iadd__', '__iand__', '__ifloordiv__', '__ilshift__', '__imatmul__', '__imod__', '__imul__', '__index__', '__init__', '__init_subclass__', '__int__', '__invert__', '__ior__', '__ipow__', '__irshift__', '__isub__', '__iter__', '__itruediv__', '__ixor__', '__le__', '__len__', '__lshift__', '__lt__', '__matmul__', '__mod__', '__mul__', '__ne__', '__neg__', '__new__', '__or__', '__pos__', '__pow__', '__radd__', '__rand__', '__rdivmod__', '__reduce__', '__reduce_ex__', '__repr__', '__rfloordiv__', '__rlshift__', '__rmatmul__', '__rmod__', '__rmul__', '__ror__', '__rpow__', '__rrshift__', '__rshift__', '__rsub__', '__rtruediv__', '__rxor__', '__setattr__', '__setitem__', '__setstate__', '__sizeof__', '__str__', '__sub__', '__subclasshook__', '__truediv__', '__xor__', 'all', 'any', 'argmax', 'argmin', 'argpartition', 'argsort', 'astype', 'base', 'byteswap', 'choose', 'clip', 'compress', 'conj', 'conjugate', 'copy', 'ctypes', 'cumprod', 'cumsum', 'data', 'diagonal', 'dot', 'dtype', 'dump', 'dumps', 'fill', 'flags', 'flat', 'flatten', 'getfield', 'imag', 'item', 'itemset', 'itemsize', 'max', 'mean', 'min', 'nbytes', 'ndim', 'newbyteorder', 'nonzero', 'partition', 'prod', 'ptp', 'put', 'ravel', 'real', 'repeat', 'reshape', 'resize', 'round', 'searchsorted', 'setfield', 'setflags', 'shape', 'size', 'sort', 'squeeze', 'std', 'strides', 'sum', 'swapaxes', 'take', 'tobytes', 'tofile', 'tolist', 'tostring', 'trace', 'transpose', 'var', 'view']
+                </div>
+            </div>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# If I want the average roll, the "mean" method looks promising...
+rolls.mean()
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &gt;&gt;</div>
+                </div>
+                
+                <p class="output-indicator">Output:</p>
+                
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+3.3
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# Or maybe I just want to turn the array into a list, in which case I can use "tolist"
+rolls.tolist()
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &gt;&gt;</div>
+                </div>
+                
+                <p class="output-indicator">Output:</p>
+                
+                <div class="code-result">
+                    <pre>
+                        <code class="output language-python">
+[3, 4, 3, 4, 5, 5, 2, 1, 3, 3]
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            
+            <p class="special-text"><b>3: <span class="inline-code">help()</span></b>(tell me more)</p>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# That "ravel" attribute sounds interesting. I'm a big classical music fan.
+help(rolls.ravel)
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &gt;&gt;</div>
+                </div>
+                
+                <p class="output-indicator">Output:</p>
+                
+                <div class="code-result">
+                    <pre class="pre-padding">
+Help on built-in function ravel:
+
+ravel(...) method of numpy.ndarray instance
+    a.ravel([order])
+    
+    Return a flattened array.
+    
+    Refer to `numpy.ravel` for full documentation.
+    
+    See Also
+    --------
+    numpy.ravel : equivalent function
+    
+    ndarray.flat : a flat iterator on the array.
+                    </pre>
+                </div>
+            </div>
+
+            <div class="code-snippet-container adjust-stuff">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+# Okay, just tell me everything there is to know about numpy.ndarray
+# (Click the "output" button to see the novel-length output)
+help(rolls)
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &RightAngleBracket;&RightAngleBracket;</div>
+                </div>
+            </div>
+
+            <div class="show-and-hide-question">
+                <p class="basic-text show-toggle">Show hidden output</p>
+                <p class="basic-text hide-toggle hide-question-toggle">Hide output</p>
+                <hr class="hideline">
+            </div>
+            
+            <div class="code-snippet-container hidden-question">
+    
+                <p class="output-indicator">Output:</p>
+    
+                <div class="code-result">
+                    <pre class="pre-padding">
+Help on ndarray object:
+
+class ndarray(builtins.object)
+ |  ndarray(shape, dtype=float, buffer=None, offset=0,
+ |          strides=None, order=None)
+ |  
+ |  An array object represents a multidimensional, homogeneous array
+ |  of fixed-size items.  An associated data-type object describes the
+ |  format of each element in the array (its byte-order, how many bytes it
+ |  occupies in memory, whether it is an integer, a floating point number,
+ |  or something else, etc.)
+ |  
+ |  Arrays should be constructed using `array`, `zeros` or `empty` (refer
+ |  to the See Also section below).  The parameters given here refer to
+ |  a low-level method (`ndarray(...)`) for instantiating an array.
+ |  
+ |  For more information, refer to the `numpy` module and examine the
+ |  methods and attributes of an array.
+ |  
+ |  Parameters
+ |  ----------
+ |  (for the __new__ method; see Notes below)
+ |  
+ |  shape : tuple of ints
+ |      Shape of created array.
+ |  dtype : data-type, optional
+ |      Any object that can be interpreted as a numpy data type.
+ |  buffer : object exposing buffer interface, optional
+ |      Used to fill the array with data.
+ |  offset : int, optional
+ |      Offset of array data in buffer.
+ |  strides : tuple of ints, optional
+ |      Strides of data in memory.
+ |  order : {'C', 'F'}, optional
+ |      Row-major (C-style) or column-major (Fortran-style) order.
+ |  
+ |  Attributes
+ |  ----------
+ |  T : ndarray
+ |      Transpose of the array.
+ |  data : buffer
+ |      The array's elements, in memory.
+ |  dtype : dtype object
+ |      Describes the format of the elements in the array.
+ |  flags : dict
+ |      Dictionary containing information related to memory use, e.g.,
+ |      'C_CONTIGUOUS', 'OWNDATA', 'WRITEABLE', etc.
+ |  flat : numpy.flatiter object
+ |      Flattened version of the array as an iterator.  The iterator
+ |      allows assignments, e.g., ``x.flat = 3`` (See `ndarray.flat` for
+ |      assignment examples; TODO).
+ |  imag : ndarray
+ |      Imaginary part of the array.
+ |  real : ndarray
+ |      Real part of the array.
+ |  size : int
+ |      Number of elements in the array.
+ |  itemsize : int
+ |      The memory use of each array element in bytes.
+ |  nbytes : int
+ |      The total number of bytes required to store the array data,
+ |      i.e., ``itemsize * size``.
+ |  ndim : int
+ |      The array's number of dimensions.
+ |  shape : tuple of ints
+ |      Shape of the array.
+ |  strides : tuple of ints
+ |      The step-size required to move from one element to the next in
+ |      memory. For example, a contiguous ``(3, 4)`` array of type
+ |      ``int16`` in C-order has strides ``(8, 2)``.  This implies that
+ |      to move from element to element in memory requires jumps of 2 bytes.
+ |      To move from row-to-row, one needs to jump 8 bytes at a time
+ |      (``2 * 4``).
+ |  ctypes : ctypes object
+ |      Class containing properties of the array needed for interaction
+ |      with ctypes.
+ |  base : ndarray
+ |      If the array is a view into another array, that array is its `base`
+ |      (unless that array is also a view).  The `base` array is where the
+ |      array data is actually stored.
+ |  
+ |  See Also
+ |  --------
+ |  array : Construct an array.
+ |  zeros : Create an array, each element of which is zero.
+ |  empty : Create an array, but leave its allocated memory unchanged (i.e.,
+ |          it contains "garbage").
+ |  dtype : Create a data-type.
+ |  numpy.typing.NDArray : A :term:`generic <generic type>` version
+ |                         of ndarray.
+ |  
+ |  Notes
+ |  -----
+ |  There are two modes of creating an array using ``__new__``:
+ |  
+ |  1. If `buffer` is None, then only `shape`, `dtype`, and `order`
+ |     are used.
+ |  2. If `buffer` is an object exposing the buffer interface, then
+ |     all keywords are interpreted.
+ |  
+ |  No ``__init__`` method is needed because the array is fully initialized
+ |  after the ``__new__`` method.
+ |  
+ |  Examples
+ |  --------
+ |  These examples illustrate the low-level `ndarray` constructor.  Refer
+ |  to the `See Also` section above for easier ways of constructing an
+ |  ndarray.
+ |  
+ |  First mode, `buffer` is None:
+ |  
+ |  >>> np.ndarray(shape=(2,2), dtype=float, order='F')
+ |  array([[0.0e+000, 0.0e+000], # random
+ |         [     nan, 2.5e-323]])
+ |  
+ |  Second mode:
+ |  
+ |  >>> np.ndarray((2,), buffer=np.array([1,2,3]),
+ |  ...            offset=np.int_().itemsize,
+ |  ...            dtype=int) # offset = 1*itemsize, i.e. skip first element
+ |  array([2, 3])
+ |  
+ |  Methods defined here:
+ |  
+ |  __abs__(self, /)
+ |      abs(self)
+ |  
+ |  __add__(self, value, /)
+ |      Return self+value.
+ |  
+ |  __and__(self, value, /)
+ |      Return self&value.
+ |  
+ |  __array__(...)
+ |      a.__array__([dtype], /) -> reference if type unchanged, copy otherwise.
+ |      
+ |      Returns either a new reference to self if dtype is not given or a new array
+ |      of provided data type if dtype is different from the current dtype of the
+ |      array.
+ |  
+ |  __array_function__(...)
+ |  
+ |  __array_prepare__(...)
+ |      a.__array_prepare__(obj) -> Object of same type as ndarray object obj.
+ |  
+ |  __array_ufunc__(...)
+ |  
+ |  __array_wrap__(...)
+ |      a.__array_wrap__(obj) -> Object of same type as ndarray object a.
+ |  
+ |  __bool__(self, /)
+ |      self != 0
+ |  
+ |  __complex__(...)
+ |  
+ |  __contains__(self, key, /)
+ |      Return key in self.
+ |  
+ |  __copy__(...)
+ |      a.__copy__()
+ |      
+ |      Used if :func:`copy.copy` is called on an array. Returns a copy of the array.
+ |      
+ |      Equivalent to ``a.copy(order='K')``.
+ |  
+ |  __deepcopy__(...)
+ |      a.__deepcopy__(memo, /) -> Deep copy of array.
+ |      
+ |      Used if :func:`copy.deepcopy` is called on an array.
+ |  
+ |  __delitem__(self, key, /)
+ |      Delete self[key].
+ |  
+ |  __divmod__(self, value, /)
+ |      Return divmod(self, value).
+ |  
+ |  __eq__(self, value, /)
+ |      Return self==value.
+ |  
+ |  __float__(self, /)
+ |      float(self)
+ |  
+ |  __floordiv__(self, value, /)
+ |      Return self//value.
+ |  
+ |  __format__(...)
+ |      Default object formatter.
+ |  
+ |  __ge__(self, value, /)
+ |      Return self>=value.
+ |  
+ |  __getitem__(self, key, /)
+ |      Return self[key].
+ |  
+ |  __gt__(self, value, /)
+ |      Return self>value.
+ |  
+ |  __iadd__(self, value, /)
+ |      Return self+=value.
+ |  
+ |  __iand__(self, value, /)
+ |      Return self&=value.
+ |  
+ |  __ifloordiv__(self, value, /)
+ |      Return self//=value.
+ |  
+ |  __ilshift__(self, value, /)
+ |      Return self<<=value.
+ |  
+ |  __imatmul__(self, value, /)
+ |      Return self@=value.
+ |  
+ |  __imod__(self, value, /)
+ |      Return self%=value.
+ |  
+ |  __imul__(self, value, /)
+ |      Return self*=value.
+ |  
+ |  __index__(self, /)
+ |      Return self converted to an integer, if self is suitable for use as an index into a list.
+ |  
+ |  __int__(self, /)
+ |      int(self)
+ |  
+ |  __invert__(self, /)
+ |      ~self
+ |  
+ |  __ior__(self, value, /)
+ |      Return self|=value.
+ |  
+ |  __ipow__(self, value, /)
+ |      Return self**=value.
+ |  
+ |  __irshift__(self, value, /)
+ |      Return self>>=value.
+ |  
+ |  __isub__(self, value, /)
+ |      Return self-=value.
+ |  
+ |  __iter__(self, /)
+ |      Implement iter(self).
+ |  
+ |  __itruediv__(self, value, /)
+ |      Return self/=value.
+ |  
+ |  __ixor__(self, value, /)
+ |      Return self^=value.
+ |  
+ |  __le__(self, value, /)
+ |      Return self<=value.
+ |  
+ |  __len__(self, /)
+ |      Return len(self).
+ |  
+ |  __lshift__(self, value, /)
+ |      Return self<<value.
+ |  
+ |  __lt__(self, value, /)
+ |      Return self<value.
+ |  
+ |  __matmul__(self, value, /)
+ |      Return self@value.
+ |  
+ |  __mod__(self, value, /)
+ |      Return self%value.
+ |  
+ |  __mul__(self, value, /)
+ |      Return self*value.
+ |  
+ |  __ne__(self, value, /)
+ |      Return self!=value.
+ |  
+ |  __neg__(self, /)
+ |      -self
+ |  
+ |  __or__(self, value, /)
+ |      Return self|value.
+ |  
+ |  __pos__(self, /)
+ |      +self
+ |  
+ |  __pow__(self, value, mod=None, /)
+ |      Return pow(self, value, mod).
+ |  
+ |  __radd__(self, value, /)
+ |      Return value+self.
+ |  
+ |  __rand__(self, value, /)
+ |      Return value&self.
+ |  
+ |  __rdivmod__(self, value, /)
+ |      Return divmod(value, self).
+ |  
+ |  __reduce__(...)
+ |      a.__reduce__()
+ |      
+ |      For pickling.
+ |  
+ |  __reduce_ex__(...)
+ |      Helper for pickle.
+ |  
+ |  __repr__(self, /)
+ |      Return repr(self).
+ |  
+ |  __rfloordiv__(self, value, /)
+ |      Return value//self.
+ |  
+ |  __rlshift__(self, value, /)
+ |      Return value<<self.
+ |  
+ |  __rmatmul__(self, value, /)
+ |      Return value@self.
+ |  
+ |  __rmod__(self, value, /)
+ |      Return value%self.
+ |  
+ |  __rmul__(self, value, /)
+ |      Return value*self.
+ |  
+ |  __ror__(self, value, /)
+ |      Return value|self.
+ |  
+ |  __rpow__(self, value, mod=None, /)
+ |      Return pow(value, self, mod).
+ |  
+ |  __rrshift__(self, value, /)
+ |      Return value>>self.
+ |  
+ |  __rshift__(self, value, /)
+ |      Return self>>value.
+ |  
+ |  __rsub__(self, value, /)
+ |      Return value-self.
+ |  
+ |  __rtruediv__(self, value, /)
+ |      Return value/self.
+ |  
+ |  __rxor__(self, value, /)
+ |      Return value^self.
+ |  
+ |  __setitem__(self, key, value, /)
+ |      Set self[key] to value.
+ |  
+ |  __setstate__(...)
+ |      a.__setstate__(state, /)
+ |      
+ |      For unpickling.
+ |      
+ |      The `state` argument must be a sequence that contains the following
+ |      elements:
+ |      
+ |      Parameters
+ |      ----------
+ |      version : int
+ |          optional pickle version. If omitted defaults to 0.
+ |      shape : tuple
+ |      dtype : data-type
+ |      isFortran : bool
+ |      rawdata : string or list
+ |          a binary string with the data (or a list if 'a' is an object array)
+ |  
+ |  __sizeof__(...)
+ |      Size of object in memory, in bytes.
+ |  
+ |  __str__(self, /)
+ |      Return str(self).
+ |  
+ |  __sub__(self, value, /)
+ |      Return self-value.
+ |  
+ |  __truediv__(self, value, /)
+ |      Return self/value.
+ |  
+ |  __xor__(self, value, /)
+ |      Return self^value.
+ |  
+ |  all(...)
+ |      a.all(axis=None, out=None, keepdims=False, *, where=True)
+ |      
+ |      Returns True if all elements evaluate to True.
+ |      
+ |      Refer to `numpy.all` for full documentation.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.all : equivalent function
+ |  
+ |  any(...)
+ |      a.any(axis=None, out=None, keepdims=False, *, where=True)
+ |      
+ |      Returns True if any of the elements of `a` evaluate to True.
+ |      
+ |      Refer to `numpy.any` for full documentation.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.any : equivalent function
+ |  
+ |  argmax(...)
+ |      a.argmax(axis=None, out=None)
+ |      
+ |      Return indices of the maximum values along the given axis.
+ |      
+ |      Refer to `numpy.argmax` for full documentation.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.argmax : equivalent function
+ |  
+ |  argmin(...)
+ |      a.argmin(axis=None, out=None)
+ |      
+ |      Return indices of the minimum values along the given axis.
+ |      
+ |      Refer to `numpy.argmin` for detailed documentation.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.argmin : equivalent function
+ |  
+ |  argpartition(...)
+ |      a.argpartition(kth, axis=-1, kind='introselect', order=None)
+ |      
+ |      Returns the indices that would partition this array.
+ |      
+ |      Refer to `numpy.argpartition` for full documentation.
+ |      
+ |      .. versionadded:: 1.8.0
+ |      
+ |      See Also
+ |      --------
+ |      numpy.argpartition : equivalent function
+ |  
+ |  argsort(...)
+ |      a.argsort(axis=-1, kind=None, order=None)
+ |      
+ |      Returns the indices that would sort this array.
+ |      
+ |      Refer to `numpy.argsort` for full documentation.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.argsort : equivalent function
+ |  
+ |  astype(...)
+ |      a.astype(dtype, order='K', casting='unsafe', subok=True, copy=True)
+ |      
+ |      Copy of the array, cast to a specified type.
+ |      
+ |      Parameters
+ |      ----------
+ |      dtype : str or dtype
+ |          Typecode or data-type to which the array is cast.
+ |      order : {'C', 'F', 'A', 'K'}, optional
+ |          Controls the memory layout order of the result.
+ |          'C' means C order, 'F' means Fortran order, 'A'
+ |          means 'F' order if all the arrays are Fortran contiguous,
+ |          'C' order otherwise, and 'K' means as close to the
+ |          order the array elements appear in memory as possible.
+ |          Default is 'K'.
+ |      casting : {'no', 'equiv', 'safe', 'same_kind', 'unsafe'}, optional
+ |          Controls what kind of data casting may occur. Defaults to 'unsafe'
+ |          for backwards compatibility.
+ |      
+ |            * 'no' means the data types should not be cast at all.
+ |            * 'equiv' means only byte-order changes are allowed.
+ |            * 'safe' means only casts which can preserve values are allowed.
+ |            * 'same_kind' means only safe casts or casts within a kind,
+ |              like float64 to float32, are allowed.
+ |            * 'unsafe' means any data conversions may be done.
+ |      subok : bool, optional
+ |          If True, then sub-classes will be passed-through (default), otherwise
+ |          the returned array will be forced to be a base-class array.
+ |      copy : bool, optional
+ |          By default, astype always returns a newly allocated array. If this
+ |          is set to false, and the `dtype`, `order`, and `subok`
+ |          requirements are satisfied, the input array is returned instead
+ |          of a copy.
+ |      
+ |      Returns
+ |      -------
+ |      arr_t : ndarray
+ |          Unless `copy` is False and the other conditions for returning the input
+ |          array are satisfied (see description for `copy` input parameter), `arr_t`
+ |          is a new array of the same shape as the input array, with dtype, order
+ |          given by `dtype`, `order`.
+ |      
+ |      Notes
+ |      -----
+ |      .. versionchanged:: 1.17.0
+ |         Casting between a simple data type and a structured one is possible only
+ |         for "unsafe" casting.  Casting to multiple fields is allowed, but
+ |         casting from multiple fields is not.
+ |      
+ |      .. versionchanged:: 1.9.0
+ |         Casting from numeric to string types in 'safe' casting mode requires
+ |         that the string dtype length is long enough to store the max
+ |         integer/float value converted.
+ |      
+ |      Raises
+ |      ------
+ |      ComplexWarning
+ |          When casting from complex to float or int. To avoid this,
+ |          one should use ``a.real.astype(t)``.
+ |      
+ |      Examples
+ |      --------
+ |      >>> x = np.array([1, 2, 2.5])
+ |      >>> x
+ |      array([1. ,  2. ,  2.5])
+ |      
+ |      >>> x.astype(int)
+ |      array([1, 2, 2])
+ |  
+ |  byteswap(...)
+ |      a.byteswap(inplace=False)
+ |      
+ |      Swap the bytes of the array elements
+ |      
+ |      Toggle between low-endian and big-endian data representation by
+ |      returning a byteswapped array, optionally swapped in-place.
+ |      Arrays of byte-strings are not swapped. The real and imaginary
+ |      parts of a complex number are swapped individually.
+ |      
+ |      Parameters
+ |      ----------
+ |      inplace : bool, optional
+ |          If ``True``, swap bytes in-place, default is ``False``.
+ |      
+ |      Returns
+ |      -------
+ |      out : ndarray
+ |          The byteswapped array. If `inplace` is ``True``, this is
+ |          a view to self.
+ |      
+ |      Examples
+ |      --------
+ |      >>> A = np.array([1, 256, 8755], dtype=np.int16)
+ |      >>> list(map(hex, A))
+ |      ['0x1', '0x100', '0x2233']
+ |      >>> A.byteswap(inplace=True)
+ |      array([  256,     1, 13090], dtype=int16)
+ |      >>> list(map(hex, A))
+ |      ['0x100', '0x1', '0x3322']
+ |      
+ |      Arrays of byte-strings are not swapped
+ |      
+ |      >>> A = np.array([b'ceg', b'fac'])
+ |      >>> A.byteswap()
+ |      array([b'ceg', b'fac'], dtype='|S3')
+ |      
+ |      ``A.newbyteorder().byteswap()`` produces an array with the same values
+ |        but different representation in memory
+ |      
+ |      >>> A = np.array([1, 2, 3])
+ |      >>> A.view(np.uint8)
+ |      array([1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0,
+ |             0, 0], dtype=uint8)
+ |      >>> A.newbyteorder().byteswap(inplace=True)
+ |      array([1, 2, 3])
+ |      >>> A.view(np.uint8)
+ |      array([0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0,
+ |             0, 3], dtype=uint8)
+ |  
+ |  choose(...)
+ |      a.choose(choices, out=None, mode='raise')
+ |      
+ |      Use an index array to construct a new array from a set of choices.
+ |      
+ |      Refer to `numpy.choose` for full documentation.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.choose : equivalent function
+ |  
+ |  clip(...)
+ |      a.clip(min=None, max=None, out=None, **kwargs)
+ |      
+ |      Return an array whose values are limited to ``[min, max]``.
+ |      One of max or min must be given.
+ |      
+ |      Refer to `numpy.clip` for full documentation.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.clip : equivalent function
+ |  
+ |  compress(...)
+ |      a.compress(condition, axis=None, out=None)
+ |      
+ |      Return selected slices of this array along given axis.
+ |      
+ |      Refer to `numpy.compress` for full documentation.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.compress : equivalent function
+ |  
+ |  conj(...)
+ |      a.conj()
+ |      
+ |      Complex-conjugate all elements.
+ |      
+ |      Refer to `numpy.conjugate` for full documentation.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.conjugate : equivalent function
+ |  
+ |  conjugate(...)
+ |      a.conjugate()
+ |      
+ |      Return the complex conjugate, element-wise.
+ |      
+ |      Refer to `numpy.conjugate` for full documentation.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.conjugate : equivalent function
+ |  
+ |  copy(...)
+ |      a.copy(order='C')
+ |      
+ |      Return a copy of the array.
+ |      
+ |      Parameters
+ |      ----------
+ |      order : {'C', 'F', 'A', 'K'}, optional
+ |          Controls the memory layout of the copy. 'C' means C-order,
+ |          'F' means F-order, 'A' means 'F' if `a` is Fortran contiguous,
+ |          'C' otherwise. 'K' means match the layout of `a` as closely
+ |          as possible. (Note that this function and :func:`numpy.copy` are very
+ |          similar but have different default values for their order=
+ |          arguments, and this function always passes sub-classes through.)
+ |      
+ |      See also
+ |      --------
+ |      numpy.copy : Similar function with different default behavior
+ |      numpy.copyto
+ |      
+ |      Notes
+ |      -----
+ |      This function is the preferred method for creating an array copy.  The
+ |      function :func:`numpy.copy` is similar, but it defaults to using order 'K',
+ |      and will not pass sub-classes through by default.
+ |      
+ |      Examples
+ |      --------
+ |      >>> x = np.array([[1,2,3],[4,5,6]], order='F')
+ |      
+ |      >>> y = x.copy()
+ |      
+ |      >>> x.fill(0)
+ |      
+ |      >>> x
+ |      array([[0, 0, 0],
+ |             [0, 0, 0]])
+ |      
+ |      >>> y
+ |      array([[1, 2, 3],
+ |             [4, 5, 6]])
+ |      
+ |      >>> y.flags['C_CONTIGUOUS']
+ |      True
+ |  
+ |  cumprod(...)
+ |      a.cumprod(axis=None, dtype=None, out=None)
+ |      
+ |      Return the cumulative product of the elements along the given axis.
+ |      
+ |      Refer to `numpy.cumprod` for full documentation.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.cumprod : equivalent function
+ |  
+ |  cumsum(...)
+ |      a.cumsum(axis=None, dtype=None, out=None)
+ |      
+ |      Return the cumulative sum of the elements along the given axis.
+ |      
+ |      Refer to `numpy.cumsum` for full documentation.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.cumsum : equivalent function
+ |  
+ |  diagonal(...)
+ |      a.diagonal(offset=0, axis1=0, axis2=1)
+ |      
+ |      Return specified diagonals. In NumPy 1.9 the returned array is a
+ |      read-only view instead of a copy as in previous NumPy versions.  In
+ |      a future version the read-only restriction will be removed.
+ |      
+ |      Refer to :func:`numpy.diagonal` for full documentation.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.diagonal : equivalent function
+ |  
+ |  dot(...)
+ |      a.dot(b, out=None)
+ |      
+ |      Dot product of two arrays.
+ |      
+ |      Refer to `numpy.dot` for full documentation.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.dot : equivalent function
+ |      
+ |      Examples
+ |      --------
+ |      >>> a = np.eye(2)
+ |      >>> b = np.ones((2, 2)) * 2
+ |      >>> a.dot(b)
+ |      array([[2.,  2.],
+ |             [2.,  2.]])
+ |      
+ |      This array method can be conveniently chained:
+ |      
+ |      >>> a.dot(b).dot(b)
+ |      array([[8.,  8.],
+ |             [8.,  8.]])
+ |  
+ |  dump(...)
+ |      a.dump(file)
+ |      
+ |      Dump a pickle of the array to the specified file.
+ |      The array can be read back with pickle.load or numpy.load.
+ |      
+ |      Parameters
+ |      ----------
+ |      file : str or Path
+ |          A string naming the dump file.
+ |      
+ |          .. versionchanged:: 1.17.0
+ |              `pathlib.Path` objects are now accepted.
+ |  
+ |  dumps(...)
+ |      a.dumps()
+ |      
+ |      Returns the pickle of the array as a string.
+ |      pickle.loads or numpy.loads will convert the string back to an array.
+ |      
+ |      Parameters
+ |      ----------
+ |      None
+ |  
+ |  fill(...)
+ |      a.fill(value)
+ |      
+ |      Fill the array with a scalar value.
+ |      
+ |      Parameters
+ |      ----------
+ |      value : scalar
+ |          All elements of `a` will be assigned this value.
+ |      
+ |      Examples
+ |      --------
+ |      >>> a = np.array([1, 2])
+ |      >>> a.fill(0)
+ |      >>> a
+ |      array([0, 0])
+ |      >>> a = np.empty(2)
+ |      >>> a.fill(1)
+ |      >>> a
+ |      array([1.,  1.])
+ |  
+ |  flatten(...)
+ |      a.flatten(order='C')
+ |      
+ |      Return a copy of the array collapsed into one dimension.
+ |      
+ |      Parameters
+ |      ----------
+ |      order : {'C', 'F', 'A', 'K'}, optional
+ |          'C' means to flatten in row-major (C-style) order.
+ |          'F' means to flatten in column-major (Fortran-
+ |          style) order. 'A' means to flatten in column-major
+ |          order if `a` is Fortran *contiguous* in memory,
+ |          row-major order otherwise. 'K' means to flatten
+ |          `a` in the order the elements occur in memory.
+ |          The default is 'C'.
+ |      
+ |      Returns
+ |      -------
+ |      y : ndarray
+ |          A copy of the input array, flattened to one dimension.
+ |      
+ |      See Also
+ |      --------
+ |      ravel : Return a flattened array.
+ |      flat : A 1-D flat iterator over the array.
+ |      
+ |      Examples
+ |      --------
+ |      >>> a = np.array([[1,2], [3,4]])
+ |      >>> a.flatten()
+ |      array([1, 2, 3, 4])
+ |      >>> a.flatten('F')
+ |      array([1, 3, 2, 4])
+ |  
+ |  getfield(...)
+ |      a.getfield(dtype, offset=0)
+ |      
+ |      Returns a field of the given array as a certain type.
+ |      
+ |      A field is a view of the array data with a given data-type. The values in
+ |      the view are determined by the given type and the offset into the current
+ |      array in bytes. The offset needs to be such that the view dtype fits in the
+ |      array dtype; for example an array of dtype complex128 has 16-byte elements.
+ |      If taking a view with a 32-bit integer (4 bytes), the offset needs to be
+ |      between 0 and 12 bytes.
+ |      
+ |      Parameters
+ |      ----------
+ |      dtype : str or dtype
+ |          The data type of the view. The dtype size of the view can not be larger
+ |          than that of the array itself.
+ |      offset : int
+ |          Number of bytes to skip before beginning the element view.
+ |      
+ |      Examples
+ |      --------
+ |      >>> x = np.diag([1.+1.j]*2)
+ |      >>> x[1, 1] = 2 + 4.j
+ |      >>> x
+ |      array([[1.+1.j,  0.+0.j],
+ |             [0.+0.j,  2.+4.j]])
+ |      >>> x.getfield(np.float64)
+ |      array([[1.,  0.],
+ |             [0.,  2.]])
+ |      
+ |      By choosing an offset of 8 bytes we can select the complex part of the
+ |      array for our view:
+ |      
+ |      >>> x.getfield(np.float64, offset=8)
+ |      array([[1.,  0.],
+ |             [0.,  4.]])
+ |  
+ |  item(...)
+ |      a.item(*args)
+ |      
+ |      Copy an element of an array to a standard Python scalar and return it.
+ |      
+ |      Parameters
+ |      ----------
+ |      \*args : Arguments (variable number and type)
+ |      
+ |          * none: in this case, the method only works for arrays
+ |            with one element (`a.size == 1`), which element is
+ |            copied into a standard Python scalar object and returned.
+ |      
+ |          * int_type: this argument is interpreted as a flat index into
+ |            the array, specifying which element to copy and return.
+ |      
+ |          * tuple of int_types: functions as does a single int_type argument,
+ |            except that the argument is interpreted as an nd-index into the
+ |            array.
+ |      
+ |      Returns
+ |      -------
+ |      z : Standard Python scalar object
+ |          A copy of the specified element of the array as a suitable
+ |          Python scalar
+ |      
+ |      Notes
+ |      -----
+ |      When the data type of `a` is longdouble or clongdouble, item() returns
+ |      a scalar array object because there is no available Python scalar that
+ |      would not lose information. Void arrays return a buffer object for item(),
+ |      unless fields are defined, in which case a tuple is returned.
+ |      
+ |      `item` is very similar to a[args], except, instead of an array scalar,
+ |      a standard Python scalar is returned. This can be useful for speeding up
+ |      access to elements of the array and doing arithmetic on elements of the
+ |      array using Python's optimized math.
+ |      
+ |      Examples
+ |      --------
+ |      >>> np.random.seed(123)
+ |      >>> x = np.random.randint(9, size=(3, 3))
+ |      >>> x
+ |      array([[2, 2, 6],
+ |             [1, 3, 6],
+ |             [1, 0, 1]])
+ |      >>> x.item(3)
+ |      1
+ |      >>> x.item(7)
+ |      0
+ |      >>> x.item((0, 1))
+ |      2
+ |      >>> x.item((2, 2))
+ |      1
+ |  
+ |  itemset(...)
+ |      a.itemset(*args)
+ |      
+ |      Insert scalar into an array (scalar is cast to array's dtype, if possible)
+ |      
+ |      There must be at least 1 argument, and define the last argument
+ |      as *item*.  Then, ``a.itemset(*args)`` is equivalent to but faster
+ |      than ``a[args] = item``.  The item should be a scalar value and `args`
+ |      must select a single item in the array `a`.
+ |      
+ |      Parameters
+ |      ----------
+ |      \*args : Arguments
+ |          If one argument: a scalar, only used in case `a` is of size 1.
+ |          If two arguments: the last argument is the value to be set
+ |          and must be a scalar, the first argument specifies a single array
+ |          element location. It is either an int or a tuple.
+ |      
+ |      Notes
+ |      -----
+ |      Compared to indexing syntax, `itemset` provides some speed increase
+ |      for placing a scalar into a particular location in an `ndarray`,
+ |      if you must do this.  However, generally this is discouraged:
+ |      among other problems, it complicates the appearance of the code.
+ |      Also, when using `itemset` (and `item`) inside a loop, be sure
+ |      to assign the methods to a local variable to avoid the attribute
+ |      look-up at each loop iteration.
+ |      
+ |      Examples
+ |      --------
+ |      >>> np.random.seed(123)
+ |      >>> x = np.random.randint(9, size=(3, 3))
+ |      >>> x
+ |      array([[2, 2, 6],
+ |             [1, 3, 6],
+ |             [1, 0, 1]])
+ |      >>> x.itemset(4, 0)
+ |      >>> x.itemset((2, 2), 9)
+ |      >>> x
+ |      array([[2, 2, 6],
+ |             [1, 0, 6],
+ |             [1, 0, 9]])
+ |  
+ |  max(...)
+ |      a.max(axis=None, out=None, keepdims=False, initial=<no value>, where=True)
+ |      
+ |      Return the maximum along a given axis.
+ |      
+ |      Refer to `numpy.amax` for full documentation.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.amax : equivalent function
+ |  
+ |  mean(...)
+ |      a.mean(axis=None, dtype=None, out=None, keepdims=False, *, where=True)
+ |      
+ |      Returns the average of the array elements along given axis.
+ |      
+ |      Refer to `numpy.mean` for full documentation.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.mean : equivalent function
+ |  
+ |  min(...)
+ |      a.min(axis=None, out=None, keepdims=False, initial=<no value>, where=True)
+ |      
+ |      Return the minimum along a given axis.
+ |      
+ |      Refer to `numpy.amin` for full documentation.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.amin : equivalent function
+ |  
+ |  newbyteorder(...)
+ |      arr.newbyteorder(new_order='S', /)
+ |      
+ |      Return the array with the same data viewed with a different byte order.
+ |      
+ |      Equivalent to::
+ |      
+ |          arr.view(arr.dtype.newbytorder(new_order))
+ |      
+ |      Changes are also made in all fields and sub-arrays of the array data
+ |      type.
+ |      
+ |      
+ |      
+ |      Parameters
+ |      ----------
+ |      new_order : string, optional
+ |          Byte order to force; a value from the byte order specifications
+ |          below. `new_order` codes can be any of:
+ |      
+ |          * 'S' - swap dtype from current to opposite endian
+ |          * {'<', 'little'} - little endian
+ |          * {'>', 'big'} - big endian
+ |          * '=' - native order, equivalent to `sys.byteorder`
+ |          * {'|', 'I'} - ignore (no change to byte order)
+ |      
+ |          The default value ('S') results in swapping the current
+ |          byte order.
+ |      
+ |      
+ |      Returns
+ |      -------
+ |      new_arr : array
+ |          New array object with the dtype reflecting given change to the
+ |          byte order.
+ |  
+ |  nonzero(...)
+ |      a.nonzero()
+ |      
+ |      Return the indices of the elements that are non-zero.
+ |      
+ |      Refer to `numpy.nonzero` for full documentation.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.nonzero : equivalent function
+ |  
+ |  partition(...)
+ |      a.partition(kth, axis=-1, kind='introselect', order=None)
+ |      
+ |      Rearranges the elements in the array in such a way that the value of the
+ |      element in kth position is in the position it would be in a sorted array.
+ |      All elements smaller than the kth element are moved before this element and
+ |      all equal or greater are moved behind it. The ordering of the elements in
+ |      the two partitions is undefined.
+ |      
+ |      .. versionadded:: 1.8.0
+ |      
+ |      Parameters
+ |      ----------
+ |      kth : int or sequence of ints
+ |          Element index to partition by. The kth element value will be in its
+ |          final sorted position and all smaller elements will be moved before it
+ |          and all equal or greater elements behind it.
+ |          The order of all elements in the partitions is undefined.
+ |          If provided with a sequence of kth it will partition all elements
+ |          indexed by kth of them into their sorted position at once.
+ |      axis : int, optional
+ |          Axis along which to sort. Default is -1, which means sort along the
+ |          last axis.
+ |      kind : {'introselect'}, optional
+ |          Selection algorithm. Default is 'introselect'.
+ |      order : str or list of str, optional
+ |          When `a` is an array with fields defined, this argument specifies
+ |          which fields to compare first, second, etc. A single field can
+ |          be specified as a string, and not all fields need to be specified,
+ |          but unspecified fields will still be used, in the order in which
+ |          they come up in the dtype, to break ties.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.partition : Return a parititioned copy of an array.
+ |      argpartition : Indirect partition.
+ |      sort : Full sort.
+ |      
+ |      Notes
+ |      -----
+ |      See ``np.partition`` for notes on the different algorithms.
+ |      
+ |      Examples
+ |      --------
+ |      >>> a = np.array([3, 4, 2, 1])
+ |      >>> a.partition(3)
+ |      >>> a
+ |      array([2, 1, 3, 4])
+ |      
+ |      >>> a.partition((1, 3))
+ |      >>> a
+ |      array([1, 2, 3, 4])
+ |  
+ |  prod(...)
+ |      a.prod(axis=None, dtype=None, out=None, keepdims=False, initial=1, where=True)
+ |      
+ |      Return the product of the array elements over the given axis
+ |      
+ |      Refer to `numpy.prod` for full documentation.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.prod : equivalent function
+ |  
+ |  ptp(...)
+ |      a.ptp(axis=None, out=None, keepdims=False)
+ |      
+ |      Peak to peak (maximum - minimum) value along a given axis.
+ |      
+ |      Refer to `numpy.ptp` for full documentation.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.ptp : equivalent function
+ |  
+ |  put(...)
+ |      a.put(indices, values, mode='raise')
+ |      
+ |      Set ``a.flat[n] = values[n]`` for all `n` in indices.
+ |      
+ |      Refer to `numpy.put` for full documentation.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.put : equivalent function
+ |  
+ |  ravel(...)
+ |      a.ravel([order])
+ |      
+ |      Return a flattened array.
+ |      
+ |      Refer to `numpy.ravel` for full documentation.
+ |      
+ |      See Also
+ |      --------
+ |      numpy.ravel : equivalent function
+ |      
+ |      ndarray.flat : a flat iterator on the array.
+                    </pre>
+                </div>
+            </div>
+
             <div class="navigation" style="display: flex; justify-content: space-between; font-size: 100px;">
                 <div class="previous" style="cursor: pointer;"><a href="PreviousChapter.html" style="text-decoration: none;">&leftarrow;</a></div>
                 <div class="next" style="cursor: pointer;"><a href="NextChapter.html" style="text-decoration: none;">&rightarrow;</a></div>
@@ -411,7 +1856,7 @@ FILE
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
     <script>hljs.highlightAll();</script>
-    <script src="Script/script.js"></script> <!-- Make sure the path matches your project structure -->
+    <script src="Script/script.js"></script>
 </body>
 
 </html>
