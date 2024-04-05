@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <title>Chapter Summary: Conditions and Conditional Statements</title>
+</head>
+
+<body>
+
+    <section class="main-container">
+        <div class="aligner">
+            <h1 class="chapter-title">Summary: Conditions and Conditional Statements</h1>
+            <p class="title-description">Dive into decision-making in Python with an example from a simple game.</p>
+
+            <ul class="lists">
+                <li class="list-content basic-text"><b>Scenario:</b> You're writing a game where the player must choose between two doors, leading to different outcomes.</li>
+            </ul>
+
+            <div class="code-snippet-container">
+                <div class="code-snippet">
+                    <pre>
+                        <code class="language-python">
+door_choice = input("Choose a door (1 or 2): ")
+
+if door_choice == "1":
+    print("Behind door 1 is a friendly dog. You pet the dog and win!")
+elif door_choice == "2":
+    print("Behind door 2 is a sleeping dragon. You tip-toe past and escape!")
+else:
+    print("You did not choose a door! Try again.")
+                        </code>
+                    </pre>
+                    <div class="try-it">Try it yourself &gt;&gt;</div>
+                </div>
+            </div>
+
+            <ul class="lists">
+                <li class="list-content basic-text">This example demonstrates the use of <span class="inline-code">if</span>, <span class="inline-code">elif</span>, and <span class="inline-code">else</span> statements to create branching paths based on the player's choice.</li>
+                <li class="list-content basic-text">The program checks for specific conditions (the player's choice) and executes different code blocks accordingly, illustrating the power and flexibility of conditional statements in controlling the flow of a Python program.</li>
+            </ul>
+
+            <div class="navigation" style="display: flex; justify-content: space-between; font-size: 100px;">
+                <div class="previous" style="cursor: pointer;"><a href="ChapterFour.html" style="text-decoration: none;">&leftarrow; Back</a></div>
+                <div class="next" style="cursor: pointer;"><a href="ChapterSix.html" style="text-decoration: none;">Next &rightarrow;</a></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+
+</html>
